@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
 //nagcommit ba??? yahhhh
+//Ito ba main menu dapat?
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
