@@ -22,6 +22,18 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
-		launch(args);
+		//launch(args);
+		/**
+		 * Test for Card
+		 */
+		//Card card = new Card(Rank.FOUR, Suit.SPADE);
+		//System.out.println(card);
+		
+		
+		/**
+		 * Test for deck
+		 */
+		Deck deck = new Deck();
+		System.out.println(deck);
 	}
 }
