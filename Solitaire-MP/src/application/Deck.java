@@ -59,6 +59,7 @@ public class Deck {
 	
 	/**
 	 * Returns String name of cards in the deck
+	 * @return String name of cards in the deck
 	 */
 	public String toString() {
 		String deckString = new String();
