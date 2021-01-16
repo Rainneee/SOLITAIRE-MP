@@ -54,7 +54,8 @@ public class Stock {
 	}
 	
 	/**
-	 * 
+	 * Peeks the top of stock without dealing the card
+	 * @return card on top of stock
 	 */
 	public Card peek() {
 		if(!stock.isEmpty()) {
