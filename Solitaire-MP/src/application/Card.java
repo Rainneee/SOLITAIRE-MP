@@ -57,7 +57,7 @@ public class Card {
 	/**
 	 * Changes the card's faceup status
 	 */
-	public void toggleActive() {
+	public void toggleFaceup() {
 		faceup = !faceup;
 	}
 	
