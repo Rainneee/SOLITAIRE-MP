@@ -58,6 +58,19 @@ public class Deck {
 	}
 	
 	/**
+	 * Peeks the top of the deck without dealing the card
+	 * @return card that is on top of deck
+	 */
+	public Card peek() {
+		if(!deck.isEmpty()) {
+			return deck.peek();
+		}
+		else {
+			return null;
+		}
+	}
+	
+	/**
 	 * Returns String name of cards in the deck
 	 * @return String name of cards in the deck
 	 */
