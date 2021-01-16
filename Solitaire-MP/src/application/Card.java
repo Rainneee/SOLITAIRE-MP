@@ -55,14 +55,14 @@ public class Card {
 	}
 	
 	/**
-	 * Changes the card's face up status
+	 * Changes the card's faceup status
 	 */
 	public void toggleFaceup() {
 		faceup = !faceup;
 	}
 	
 	/**
-	 * Checks if the card is face up
+	 * Checks if the card is faceup
 	 * @return
 	 */
 	public boolean isFaceup() {
