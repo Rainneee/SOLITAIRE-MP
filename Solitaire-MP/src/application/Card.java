@@ -9,7 +9,7 @@ public class Card {
 	private final Rank rank;
 	private final Suit suit;
 	
-	private boolean active;
+	private boolean faceup;
 	
 	/**
 	 * Constructs a new card with specific rank, suit, and color
@@ -19,7 +19,7 @@ public class Card {
 	Card(Rank rank, Suit suit) {
 		this.rank = rank;
 		this.suit = suit;
-		this.active = false;
+		this.faceup = false;
 	}
 	
 	/**
@@ -52,6 +52,21 @@ public class Card {
 	 */
 	public boolean isBlack() {
 		return (suit == Suit.CLUB || suit == Suit.SPADE);
+	}
+	
+	/**
+	 * Changes the card's faceup status
+	 */
+	public void toggleActive() {
+		faceup = !faceup;
+	}
+	
+	/**
+	 * Checks if the card is faceup
+	 * @return
+	 */
+	public boolean isFaceup() {
+		return faceup;
 	}
 	
 	/**
