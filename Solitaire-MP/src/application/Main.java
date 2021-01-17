@@ -1,5 +1,6 @@
 package application;
 	
+import application.model.Deck;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;

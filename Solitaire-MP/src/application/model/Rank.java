@@ -1,4 +1,4 @@
-package application;
+package application.model;
 
 /**
  * Contains every possible rank of a card

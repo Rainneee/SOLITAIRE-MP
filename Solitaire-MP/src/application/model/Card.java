@@ -1,4 +1,4 @@
-package application;
+package application.model;
 
 /**
  * Represents a card

@@ -1,4 +1,4 @@
-package application;
+package application.model;
 
 import java.util.Collections;
 import java.util.Stack;
@@ -14,7 +14,7 @@ public class Deck {
 	/**
 	 * Constructs a standard deck of cards then shuffled
 	 */
-	Deck() {
+	public Deck() {
 		for(Suit suit : Suit.values()) {
 			for(Rank rank : Rank.values()) {
 				deck.add(new Card(rank, suit));

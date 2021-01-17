@@ -1,4 +1,4 @@
-package application;
+package application.model;
 
 /**
  * Contains every possible suit in a deck of cards
