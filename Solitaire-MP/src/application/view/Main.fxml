@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane fx:id="mainPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem fx:id="newGameMenuItem" mnemonicParsing="false" onAction="#startNewGame" text="New Game" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="preferencesMenuItem" mnemonicParsing="false" onAction="#openPreferencesEventHandler" text="Settings" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="goHomeItem" mnemonicParsing="false" onAction="#returnHomeEventHandler" text="Return Home" />
+            
+            </items>
+          </Menu>
+    
+        </menus>
+      </MenuBar>
+   </top>
+</BorderPane>

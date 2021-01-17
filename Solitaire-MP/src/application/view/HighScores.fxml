@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.HighScoreController">
+   <children>
+      <ImageView fitHeight="404.0" fitWidth="304.0">
+         <image>
+            <Image url="@../../background.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="tablePane" layoutX="25.0" layoutY="67.0" prefHeight="274.0" prefWidth="254.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="75.0">
+         <effect>
+            <Lighting diffuseConstant="1.53">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect></AnchorPane>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="67.0" layoutY="27.0" prefHeight="32.0" prefWidth="167.0" text="HIGH SCORES" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="341.0" AnchorPane.leftAnchor="67.0" AnchorPane.rightAnchor="66.0" AnchorPane.topAnchor="27.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font>
+         <effect>
+            <Bloom threshold="1.0" />
+         </effect>
+      </Label>
+      <Button layoutX="245.0" layoutY="362.0" mnemonicParsing="false" onAction="#close" style="-fx-background-color: darkGreen; -fx-text-fill: white;" text="Close">
+         <effect>
+            <Lighting diffuseConstant="1.47" specularExponent="40.0">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+   </children>
+</AnchorPane>

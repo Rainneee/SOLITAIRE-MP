@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane hgap="14.0" maxHeight="400.0" maxWidth="600.0" prefHeight="400.0" prefWidth="600.0" vgap="14.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.SettingsController">
+   <children>
+      <Label text="Card Backs" />
+      <Label text="Draw type:" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+      <ComboBox fx:id="cardBackSelector" onAction="#updateCardBack" prefWidth="150.0" GridPane.columnIndex="1" />
+      <ComboBox fx:id="drawTypeSelector" layoutX="84.0" layoutY="10.0" onAction="#updateDrawType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+      <Slider fx:id="masterVolumeSlider" onDragDetected="#masterVolumeDragged" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <Slider fx:id="musicVolumeSlider" onDragDetected="#musicVolumeDragged" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <Slider fx:id="effectsVolumeSlider" onDragDetected="#effectsVolumeDragged" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <Label text="Master" GridPane.rowIndex="5" />
+      <Label layoutX="10.0" layoutY="92.0" text="Volume" GridPane.rowIndex="3" />
+      <Label layoutX="10.0" layoutY="69.0" text="Music" GridPane.rowIndex="6" />
+      <Label layoutX="10.0" layoutY="108.0" text="Effects" GridPane.rowIndex="7" />
+      <CheckBox fx:id="undoSelection" disable="true" mnemonicParsing="false" text="Enable undos" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+      <CheckBox fx:id="solveableSelection" disable="true" layoutX="234.0" layoutY="92.0" mnemonicParsing="false" text="Solvable Games" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+      <CheckBox fx:id="showTimeSelection" disable="true" layoutX="323.0" layoutY="92.0" mnemonicParsing="false" text="Show Times/Moves" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+      <ImageView fx:id="cardBackPreview" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+         <image>
+            <Image url="@Card_back_17.svg.png" />
+         </image></ImageView>
+      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="14.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="9">
+         <children>
+            <Button fx:id="applySettingsButton" minWidth="60.0" mnemonicParsing="false" onAction="#applySettings" text="Apply" />
+            <Button fx:id="cancelButton" minWidth="60.0" mnemonicParsing="false" onAction="#cancelSettings" text="Cancel" />
+            <Button fx:id="okButton" minWidth="60.0" mnemonicParsing="false" onAction="#applySettingsAndExit" text="Ok" />
+         </children>
+      </HBox>
+      <Separator prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="2" />
+      <Separator prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="4" />
+      <Separator GridPane.columnSpan="3" GridPane.rowIndex="8" />
+   </children>
+   <columnConstraints>
+      <ColumnConstraints percentWidth="33.0" />
+      <ColumnConstraints percentWidth="33.0" />
+      <ColumnConstraints percentWidth="33.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints maxHeight="24.0" minHeight="0.0" prefHeight="8.0" />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+   </rowConstraints>
+   <padding>
+      <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
+   </padding>
+</GridPane>
