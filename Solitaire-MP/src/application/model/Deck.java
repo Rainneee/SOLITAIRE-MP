@@ -1,84 +1,54 @@
 package application.model;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Stack;
 
 /**
- * Class to represent a deck of cards
- * @author willn
- *
+ * A representation of a deck of cards using an ArrayList of Card objects. Can
+ * either be instantiated as a new deck, or as a copy of an old deck
  */
-public class Deck {
-	private Stack<Card> deck = new Stack<Card>();
-	
+public class Deck extends ArrayList<Card> {
+
 	/**
-	 * Constructs a standard deck of cards then shuffled
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+
+
+	/**
+	 * Constructor for the Deck class with no arguments. Initializes the deck to
+	 * contain every card, then shuffles to randomize order
 	 */
 	public Deck() {
-		for(Suit suit : Suit.values()) {
-			for(Rank rank : Rank.values()) {
-				deck.add(new Card(rank, suit));
+		for (String currentSuit : Card.getSuitsCodes()) {
+			for (String currentValue : Card.getValuesCodes()) {
+				this.add(new Card(currentSuit, currentValue));
 			}
 		}
 		this.shuffle();
+
 	}
-	
+
 	/**
-	 * Constructs deck based on another deck
-	 * @param deck Another deck
+	 * Constructor for the Deck class with one argument. Initializes the Deck to be
+	 * an exact copy of another Deck
+	 * 
+	 * @param oldDeck The deck to be copied into the new Deck
 	 */
-	Deck(Deck deck) {
-		this.deck = deck.deck;
+	public Deck(Deck oldDeck) {
+		for (Card currentCard : oldDeck) {
+			this.add(new Card(currentCard.getCardSuit(), currentCard.getCardValue()));
+		}
 	}
-	
+
 	/**
-	 * Shuffles the current deck
+	 * Shuffles this deck
 	 */
 	public void shuffle() {
-		Collections.shuffle(deck);
+		Collections.shuffle(this);
 	}
-	
-	/**
-	 * Checks if the deck is empty
-	 * @return true if it is empty, false otherwise
-	 */
-	public boolean isEmpty() {
-		return deck.isEmpty();
-	}
-	
-	/**
-	 * Deals the card at the top of the deck
-	 * @return card on top of the deck
-	 */
-	public Card deal() {
-		if(isEmpty()) {
-			return null;
-		}
-		return this.deck.pop();
-	}
-	
-	/**
-	 * Peeks the top of the deck without dealing the card
-	 * @return card that is on top of deck
-	 */
-	public Card peek() {
-		if(!deck.isEmpty()) {
-			return deck.peek();
-		}
-		else {
-			return null;
-		}
-	}
-	
-	/**
-	 * Returns String name of cards in the deck
-	 * @return String name of cards in the deck
-	 */
-	public String toString() {
-		String deckString = new String();
-		for(Card card: deck) {
-			deckString += card + "\n";
-		}
-		return deckString;
-	}
+
 }
