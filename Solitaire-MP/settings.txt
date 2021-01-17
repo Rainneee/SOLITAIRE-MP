@@ -1,0 +1,9 @@
+50.0
+50.0
+50.0
+false
+false
+false
+COMPRESSED CARDS\Back\BACK-min.png
+0
+0

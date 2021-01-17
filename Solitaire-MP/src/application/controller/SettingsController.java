@@ -76,12 +76,12 @@ public class SettingsController extends SuperController {
 		this.appSettingsObject = appSettingsObject;
 
 		// Update bindings on all controls
-		this.masterVolumeSlider.valueProperty().bindBidirectional(this.appSettingsObject.masterVolumeProperty());
+		/*this.masterVolumeSlider.valueProperty().bindBidirectional(this.appSettingsObject.masterVolumeProperty());
 		this.musicVolumeSlider.valueProperty().bindBidirectional(this.appSettingsObject.musicVolumeProperty());
 		this.effectsVolumeSlider.valueProperty().bindBidirectional(this.appSettingsObject.effectsVolumeProperty());
 		this.undoSelection.selectedProperty().bindBidirectional(this.appSettingsObject.undoableProperty());
 		this.solveableSelection.selectedProperty().bindBidirectional(this.appSettingsObject.solvableProperty());
-		this.showTimeSelection.selectedProperty().bindBidirectional(this.appSettingsObject.showTimesProperty());
+		this.showTimeSelection.selectedProperty().bindBidirectional(this.appSettingsObject.showTimesProperty());*/
 
 		// Get all card back options from the settings object, then update the list, and
 		// select the previously chosen selection
@@ -133,12 +133,12 @@ public class SettingsController extends SuperController {
 	void cancelSettings(ActionEvent event) {
 		// Restore all settings values to the stored old values.
 		// If apply has been pressed, this should set them to the current values
-		this.masterVolumeSlider.setValue(this.oldMasterVolume);
+		/*this.masterVolumeSlider.setValue(this.oldMasterVolume);
 		this.musicVolumeSlider.setValue(this.oldMusicVolume);
 		this.effectsVolumeSlider.setValue(this.oldEffectsVolume);
 		this.undoSelection.setSelected(this.oldUndo);
 		this.solveableSelection.setSelected(this.oldSolveable);
-		this.showTimeSelection.setSelected(this.oldShowTime);
+		this.showTimeSelection.setSelected(this.oldShowTime);*/
 
 		this.cardBackSelector.getSelectionModel().select(this.oldCardBackIndex);
 		updateCardBack(event);
@@ -163,7 +163,7 @@ public class SettingsController extends SuperController {
 	}
 
 	// Event Listener on Slider[#masterVolumeSlider].onDragDetected
-	@FXML
+	/*@FXML
 	public void masterVolumeDragged(MouseEvent event) {
 	}
 
@@ -175,7 +175,7 @@ public class SettingsController extends SuperController {
 	// Event Listener on Slider[#effectsVolumeSlider].onDragDetected
 	@FXML
 	public void effectsVolumeDragged(MouseEvent event) {
-	}
+	}*/
 
 	/**
 	 * Is called before the settings page is shown to the user. Saves all the old
@@ -190,12 +190,12 @@ public class SettingsController extends SuperController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.oldMasterVolume = this.masterVolumeSlider.getValue();
+		/*this.oldMasterVolume = this.masterVolumeSlider.getValue();
 		this.oldMusicVolume = this.musicVolumeSlider.getValue();
 		this.oldEffectsVolume = this.effectsVolumeSlider.getValue();
 		this.oldUndo = this.undoSelection.isSelected();
 		this.oldSolveable = this.solveableSelection.isSelected();
-		this.oldShowTime = this.showTimeSelection.isSelected();
+		this.oldShowTime = this.showTimeSelection.isSelected();*/
 		this.oldCardBackIndex = this.cardBackSelector.getSelectionModel().getSelectedIndex();
 		this.oldDrawType = this.drawTypeSelector.getSelectionModel().getSelectedIndex();
 	}
