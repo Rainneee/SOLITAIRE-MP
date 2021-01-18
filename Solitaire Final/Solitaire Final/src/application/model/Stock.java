@@ -23,6 +23,9 @@ public class Stock {
 	 * @param stock Stack of cards to be set
 	 */
 	public void setStock(Stack<Card> stock) {
+		for(Card card : stock) {
+			card.turnFacedown();
+		}
 		this.stock = stock;
 	}
 	
