@@ -30,7 +30,7 @@ public class MainGameController {
 	}
 	
 	@FXML
-	public void goToMessage() {
+	public void quitGame() {
 		main.openGameOver();
 	}
 

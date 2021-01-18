@@ -52,7 +52,7 @@
             <Font name="Arial Bold" size="25.0" />
          </font>
       </Label>
-      <Button layoutX="875.0" layoutY="655.0" mnemonicParsing="false" onAction="#goToMessage" prefHeight="39.0" prefWidth="108.0" text="Quit">
+      <Button fx:id="quitButton" layoutX="875.0" layoutY="655.0" mnemonicParsing="false" onAction="#quitGame" prefHeight="39.0" prefWidth="108.0" text="Quit">
          <font>
             <Font name="Bernard MT Condensed" size="21.0" />
          </font>
