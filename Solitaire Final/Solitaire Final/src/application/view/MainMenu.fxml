@@ -14,20 +14,20 @@
    <children>
       <ImageView fitHeight="707.0" fitWidth="1009.0" layoutX="-8.0" layoutY="-6.0" opacity="0.96" pickOnBounds="true">
          <image>
-            <Image url="@COMPRESSED%20CARDS/MainWallpaper.png" />
+            <Image url="@COMPRESSED%20CARDS/Background/background1.png" />
          </image>
       </ImageView>
-      <Button layoutX="310.0" layoutY="275.0" mnemonicParsing="false" onAction="#startGame" opacity="0.91" prefHeight="88.0" prefWidth="381.0" text="NEW GAME" underline="true">
+      <Button layoutX="310.0" layoutY="275.0" mnemonicParsing="false" onAction="#startGame" opacity="0.91" prefHeight="88.0" prefWidth="381.0" text="NEW GAME" textFill="#070000" underline="true">
          <font>
             <Font name="Bernard MT Condensed" size="45.0" />
          </font>
       </Button>
-      <Button layoutX="310.0" layoutY="424.0" mnemonicParsing="false" onAction="#seeHighScores" opacity="0.91" prefHeight="88.0" prefWidth="381.0" text="HIGH SCORES" underline="true">
+      <Button layoutX="310.0" layoutY="424.0" mnemonicParsing="false" onAction="#seeHighScores" opacity="0.91" prefHeight="88.0" prefWidth="381.0" text="HIGH SCORES" textFill="#070000" underline="true">
          <font>
             <Font name="Bernard MT Condensed" size="45.0" />
          </font>
       </Button>
-      <Button layoutX="308.0" layoutY="570.0" mnemonicParsing="false" onAction="#exit" opacity="0.91" prefHeight="79.0" prefWidth="381.0" text="EXIT" underline="true">
+      <Button layoutX="308.0" layoutY="570.0" mnemonicParsing="false" onAction="#exit" opacity="0.91" prefHeight="79.0" prefWidth="381.0" text="EXIT" textFill="#070000" underline="true">
          <font>
             <Font name="Bernard MT Condensed" size="45.0" />
          </font>
@@ -45,7 +45,7 @@
             <Font name="Bernard MT Condensed" size="96.0" />
          </font>
          <effect>
-            <DropShadow color="#ffe3e3" />
+            <DropShadow color="#ffe3e3" spread="0.55" />
          </effect>
       </Label>
    </children>

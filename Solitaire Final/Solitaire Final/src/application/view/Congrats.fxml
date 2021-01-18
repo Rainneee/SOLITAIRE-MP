@@ -12,7 +12,7 @@
    <children>
       <ImageView fitHeight="700.0" fitWidth="1000.0" pickOnBounds="true">
          <image>
-            <Image url="@COMPRESSED%20CARDS/MainWallpaper.png" />
+            <Image url="@COMPRESSED%20CARDS/Background/background1.png" />
          </image>
       </ImageView>
       <Label alignment="CENTER" layoutX="367.0" layoutY="187.0" text="You Won!" textFill="#070000" underline="true">
@@ -20,7 +20,7 @@
             <Font name="Bernard MT Condensed" size="78.0" />
          </font>
          <effect>
-            <DropShadow color="WHITE" height="129.84" radius="95.71000000000001" spread="0.62" width="255.0" />
+            <DropShadow color="WHITE" height="40.24" radius="17.335" spread="0.45" width="31.1" />
          </effect>
       </Label>
       <Label fx:id="playerName" alignment="CENTER" contentDisplay="CENTER" layoutX="380.0" layoutY="296.0" text="Player Name" textAlignment="CENTER" textFill="#070000" underline="true" wrapText="true">
@@ -28,7 +28,7 @@
             <Font name="Bernard MT Condensed" size="53.0" />
          </font>
          <effect>
-            <DropShadow color="WHITE" height="70.76" radius="45.765" spread="0.62" width="114.3" />
+            <DropShadow color="WHITE" height="30.34" radius="11.75" spread="0.74" width="18.66" />
          </effect>
       </Label>
       <Label fx:id="score" alignment="CENTER" contentDisplay="CENTER" layoutX="496.0" layoutY="393.0" text="0" textAlignment="CENTER" textFill="#070000" underline="true" wrapText="true">
@@ -36,7 +36,7 @@
             <Font name="Bernard MT Condensed" size="53.0" />
          </font>
          <effect>
-            <DropShadow color="#f2f2f2" height="39.66" radius="35.655" spread="0.84" width="104.96" />
+            <DropShadow color="#f2f2f2" height="34.99" radius="18.94" spread="0.74" width="42.77" />
          </effect>
       </Label>
       <Button layoutX="752.0" layoutY="618.0" mnemonicParsing="false" onAction="#goToMainMenu" opacity="0.91" prefHeight="50.0" prefWidth="219.0" text="Back to Main Menu" textFill="#070000" underline="true">

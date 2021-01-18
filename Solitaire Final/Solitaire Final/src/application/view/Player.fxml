@@ -17,7 +17,7 @@
    <children>
       <ImageView fitHeight="700.0" fitWidth="1006.0" pickOnBounds="true">
          <image>
-            <Image url="@COMPRESSED%20CARDS/MainWallpaper.png" />
+            <Image url="@COMPRESSED%20CARDS/Background/background1.png" />
          </image>
       </ImageView>
       <Label layoutX="264.0" layoutY="234.0" text="ENTER PLAYER NAME" textFill="#0d0303" underline="true">
@@ -25,7 +25,7 @@
             <Font name="Bernard MT Condensed" size="63.0" />
          </font>
          <effect>
-            <DropShadow color="#fcf9f9" height="0.0" radius="63.25" spread="0.61" width="255.0">
+            <DropShadow color="#fcf9f9" height="27.99" radius="11.1625" spread="0.7" width="18.66">
                <input>
                   <InnerShadow>
                      <input>
