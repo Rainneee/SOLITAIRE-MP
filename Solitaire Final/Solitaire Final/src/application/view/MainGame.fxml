@@ -23,7 +23,7 @@
          </children>
       </AnchorPane>
       <StackPane fx:id="stock" layoutX="45.0" layoutY="60.0" onMouseClicked="#stockClick" prefHeight="150.0" prefWidth="100.0" />
-      <StackPane fx:id="waste" layoutX="180.0" layoutY="60.0" prefHeight="150.0" prefWidth="100.0" />
+      <StackPane fx:id="waste" layoutX="180.0" layoutY="60.0" onMouseClicked="#wasteClick" prefHeight="150.0" prefWidth="100.0" />
       <AnchorPane layoutX="855.0" layoutY="60.0" prefHeight="150.0" prefWidth="100.0" style="-fx-border-style: solid; -fx-border-radius: 10;" />
       <AnchorPane layoutX="720.0" layoutY="60.0" prefHeight="150.0" prefWidth="100.0" style="-fx-border-style: solid; -fx-border-radius: 10;" />
       <AnchorPane layoutX="585.0" layoutY="60.0" prefHeight="150.0" prefWidth="100.0" style="-fx-border-style: solid; -fx-border-radius: 10;" />
@@ -64,5 +64,10 @@
          </font>
       </Button>
       <StackPane fx:id="foundation4" layoutX="855.0" layoutY="60.0" prefHeight="150.0" prefWidth="100.0" />
+      <Button fx:id="undoButton" layoutX="16.0" layoutY="653.0" mnemonicParsing="false" onAction="#undoMove" prefHeight="39.0" prefWidth="108.0" text="Undo">
+         <font>
+            <Font name="Bernard MT Condensed" size="21.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

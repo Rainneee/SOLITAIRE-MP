@@ -18,6 +18,18 @@ public class Foundation {
 	}
 	
 	/**
+	 * Constructor for implementing clone
+	 */
+	public Foundation(Stack<Card> foundation) {
+		if(foundation == null) {
+			this.foundation = new Stack<Card>();
+		}
+		else {
+			this.foundation = foundation;
+		}
+	}
+	
+	/**
 	 * Checks if the foundation is empty
 	 * @return
 	 */
@@ -87,6 +99,18 @@ public class Foundation {
 	 */
 	public Stack<Card> getFoundation() {
 		return foundation;
+	}
+	
+	/**
+	 * Creates a clone of foundation
+	 * @return
+	 */
+	public Foundation getClone() {
+		Stack<Card> cloneDeck = new Stack<Card>();
+		for(Card card : foundation) {
+			cloneDeck.push(card.getClone());
+		}
+		return new Foundation(cloneDeck);
 	}
 	
 	/**

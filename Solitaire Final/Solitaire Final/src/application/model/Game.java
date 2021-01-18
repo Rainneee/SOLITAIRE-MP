@@ -25,6 +25,24 @@ public class Game {
 	}
 	
 	/**
+	 * Constructor class for implementation of cloning
+	 * @param game
+	 */
+	public Game(Stock stock, Waste waste, Foundation[] foundations, 
+			Tableau[] tableaus, int Score) {
+		init();
+		this.stock = stock.getClone();
+		this.waste = waste.getClone();
+		for(int i = 0; i < 4; i++) {
+			this.foundations[i] = foundations[i].getClone();
+		}
+		for(int i = 0; i < 7; i++) {
+			this.tableaus[i] = tableaus[i].getClone();
+		}
+		this.Score = Score;
+	}
+	
+	/**
 	 * Initializes Game variables
 	 */
 	public void init() {
@@ -100,6 +118,73 @@ public class Game {
 	 */
 	public Tableau getTableau(int i) {
 		return tableaus[i];
+	}
+	
+	/**
+	 * Gets the instance of game itself for cloning
+	 * @return this
+	 */
+	public Game getGame() {
+		return this;
+	}
+	
+	/**
+	 * Updates score
+	 * @param points to be added
+	 */
+	public void updateScore(int points) {
+		Score += points;
+		if(Score < 0) {
+			Score = 0;
+		}
+	}
+	
+	/**
+	 * Recycles waste
+	 * @return true if success
+	 */
+	public boolean recycleWaste() {
+		if(waste.isEmpty()) {
+			return false;
+		}
+		else {
+			updateScore(-100);
+			Stack<Card> tempStack = new Stack<Card>();
+			while(!waste.isEmpty()) {
+				tempStack.push(waste.deal());
+			}
+			stock.setStock(tempStack);
+			return true;
+		}
+	}
+	
+	/**
+	 * Deals from stock to waste
+	 * @return true if success
+	 */
+	public boolean stockToWaste() {
+		waste.receiveFromStock(stock.deal());
+		return true;
+	}
+	
+	/**
+	 * Creates clone of game class
+	 * @return
+	 */
+	public Game getClone() {
+		Stock cloneStock = stock.getClone();
+		Waste cloneWaste = waste.getClone();
+		Foundation[] cloneFoundation = new Foundation[4];
+		for(int i = 0; i < 4; i++) {
+			cloneFoundation[i] = foundations[i].getClone();
+		}
+		Tableau[] cloneTableau = new Tableau[7];
+		for(int i = 0; i < 7; i++) {
+			cloneTableau[i] = tableaus[i].getClone();
+		}
+		
+		return new Game(cloneStock, cloneWaste, cloneFoundation, 
+				cloneTableau, Score);
 	}
 	
 	/**

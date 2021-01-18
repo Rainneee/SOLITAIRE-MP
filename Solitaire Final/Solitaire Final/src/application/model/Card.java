@@ -24,6 +24,20 @@ public class Card {
 	}
 	
 	/**
+	 * Constructor for card class for implementing cloning
+	 * @param rank
+	 * @param suit
+	 * @param faceup
+	 * @param active
+	 */
+	public Card(Rank rank, Suit suit, boolean faceup, boolean active) {
+		this.rank = rank;
+		this.suit = suit;
+		this.faceup = faceup;
+		this.active = active;
+	}
+	
+	/**
 	 * Gets card rank
 	 * @return rank
 	 */
@@ -120,6 +134,15 @@ public class Card {
 		else {
 			return "/application/resources/" + toString() + ".png";
 		}
+	}
+	
+	/**
+	 * Creates a clone of card
+	 * @return
+	 */
+	public Card getClone() {
+		Card card = new Card(rank, suit, faceup, active);
+		return card;
 	}
 	
 	/**

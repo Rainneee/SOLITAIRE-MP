@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -43,6 +44,9 @@ public class MainGameController {
 	private StackPane[] foundations;
 	private StackPane[] tableaus;
 	private Stack<Game> moveHistory;
+	private Card cardPicked;
+	public boolean isFirstClick = true;
+	private Double x, y;
 
 	public void setMain(Main main) {
 		this.main = main;
@@ -80,6 +84,12 @@ public class MainGameController {
 		tableaus[4] = tableau5;
 		tableaus[5] = tableau6;
 		tableaus[6] = tableau7;
+		
+		//Add eventHandlers for each tableau
+		tableau1.addEventHandler(MouseEvent.MOUSE_CLICKED, e-> {
+			x = e.getX();
+			y = e.getY();
+		});
 	}
 	
 	public void draw() {
@@ -153,7 +163,8 @@ public class MainGameController {
 				Pane cardPane = getNewPane();
 				cardPane.setStyle("-fx-background-image: url('" + card.getURL() + "');"
 					+ "-fx-background-size: 100px 150px; -fx-opacity: 1");
-				
+				int row = i;
+				//cardPane.setOnMouseClicked(event -> tableauClick(row));
 				tableaus[i].setAlignment(cardPane, Pos.TOP_CENTER);
 				cardPane.setTranslateY(offset);
 				tableaus[i].getChildren().add(cardPane);
@@ -178,7 +189,11 @@ public class MainGameController {
 	}
 	
 	public void undoMove() {
-		this.currentGame = moveHistory.pop();
+		if(!moveHistory.isEmpty()) {
+			this.currentGame = moveHistory.pop();
+			clearBoard();
+			draw();
+		}
 	}
 	
 	@FXML
@@ -187,30 +202,53 @@ public class MainGameController {
 	}
 	
 	public boolean handleStockClick() {
-		moveHistory.push(this.currentGame);
+		cloneGame();
 		
 		Stock currentStock = currentGame.getStock();
 		if(currentStock.isEmpty()) {
-			return recycleWaste();
+			return currentGame.recycleWaste();
 		}
 		else {
-			currentGame.getWaste().receiveFromStock(currentStock.deal());
-			return true;
+			return currentGame.stockToWaste();
 		}
 	}
 	
-	public boolean recycleWaste() {
-		Waste currentWaste = currentGame.getWaste();
-		if(currentWaste.isEmpty()) {
-			return false;
+	@FXML
+	public void wasteClick() {
+		handleWasteClick();
+	}
+	
+	public void handleWasteClick() {
+		if(!isFirstClick) {
+			isFirstClick = true;
+			cardPicked = null;
 		}
 		else {
-			Stack<Card> tempStack = new Stack<Card>();
-			while(!currentWaste.isEmpty()) {
-				tempStack.push(currentWaste.deal());
+			if(currentGame.getWaste().isEmpty()) {
+				isFirstClick = true;
 			}
-			currentGame.getStock().setStock(tempStack);
-			return true;
+			else {
+				cardPicked = currentGame.getWaste().deal();
+				isFirstClick = false;
+			}			
 		}
+	}
+	
+	/*
+	public void tableauClick(int row) {
+		int column = (int) (x / 135);
+		handleTableauClick(column, row);
+	}
+	
+	public boolean handleTableauClick(int column, int row) {
+		System.out.println(column);
+		System.out.println(row);
+		return true;
+	}
+	*/
+	
+	public void cloneGame() {
+		Game cloneGame = currentGame.getClone();
+		moveHistory.push(cloneGame);
 	}
 }

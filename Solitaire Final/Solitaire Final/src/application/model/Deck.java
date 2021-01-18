@@ -24,6 +24,14 @@ public class Deck {
 	}
 	
 	/**
+	 * Constructor class for cloning
+	 * @param deck
+	 */
+	public Deck(Stack<Card> deck) {
+		this.deck = deck;
+	}
+	
+	/**
 	 * Shuffles the deck
 	 */
 	public void shuffle() {
@@ -57,6 +65,18 @@ public class Deck {
 	 */
 	public Stack<Card> getDeck() {
 		return deck;
+	}
+	
+	/**
+	 * Clones deck
+	 * @return
+	 */
+	public Deck getClone() {
+		Stack<Card> cloneDeck = new Stack<Card>();
+		for(Card card : this.deck) {
+			cloneDeck.push(card.getClone());
+		}
+		return new Deck(cloneDeck);
 	}
 	
 	/**

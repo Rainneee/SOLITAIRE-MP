@@ -18,6 +18,18 @@ public class Tableau {
 	}
 	
 	/**
+	 * Constructor for clone implementation
+	 */
+	public Tableau(Stack<Card> tableau) {
+		if(tableau == null) {
+			this.tableau = new Stack<Card>();
+		}
+		else {
+			this.tableau = tableau;
+		}
+	}
+	
+	/**
 	 * Checks if tableau is empty
 	 * @return
 	 */
@@ -116,6 +128,14 @@ public class Tableau {
 		if(!tableau.isEmpty()) {
 			tableau.peek().turnFaceup();
 		}
+	}
+	
+	public Tableau getClone() {
+		Stack<Card> cloneDeck = new Stack<Card>();
+		for(Card card : tableau) {
+			cloneDeck.push(card.getClone());
+		}
+		return new Tableau(cloneDeck);
 	}
 	
 	/**

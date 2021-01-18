@@ -18,6 +18,19 @@ public class Waste {
 	}
 	
 	/**
+	 * Constructor for implementing cloning
+	 * @param waste
+	 */
+	public Waste(Stack<Card> waste) {
+		if(waste == null) {
+			this.waste = new Stack<Card>();
+		}
+		else {
+			this.waste = waste;
+		}
+	}
+	
+	/**
 	 * Receives a card assuming it is from the stock
 	 * @param card
 	 */
@@ -67,6 +80,14 @@ public class Waste {
 		else {
 			return null;
 		}
+	}
+	
+	public Waste getClone() {
+		Stack<Card> cloneDeck = new Stack<Card>();
+		for(Card card : waste) {
+			cloneDeck.push(card.getClone());
+		}
+		return new Waste(cloneDeck);
 	}
 	
 	/**

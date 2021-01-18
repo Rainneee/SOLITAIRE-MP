@@ -26,7 +26,12 @@ public class Stock {
 		for(Card card : stock) {
 			card.turnFacedown();
 		}
-		this.stock = stock;
+		if(stock == null) {
+			this.stock = new Stack<Card>();
+		}
+		else {
+			this.stock = stock;
+		}
 	}
 	
 	/**
@@ -64,6 +69,18 @@ public class Stock {
 	 */
 	public Card peek() {
 		return stock.peek();
+	}
+	
+	/**
+	 * Creates a clone of Stock
+	 * @return
+	 */
+	public Stock getClone() {
+		Stack<Card> cloneDeck = new Stack<Card>();
+		for(Card card : stock) {
+			cloneDeck.push(card.getClone());
+		}
+		return new Stock(cloneDeck);
 	}
 	
 	/**
