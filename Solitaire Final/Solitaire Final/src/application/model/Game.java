@@ -12,7 +12,7 @@ public class Game {
 	private Waste waste;
 	private Foundation[] foundations;
 	private Tableau[] tableaus;
-	private Stack<Game> moveHistory;
+	//private Stack<Game> moveHistory;
 	
 	private int Score;
 	
@@ -33,7 +33,7 @@ public class Game {
 		waste = new Waste();
 		foundations = new Foundation[4];
 		tableaus = new Tableau[7];
-		moveHistory = new Stack<Game>();
+		//moveHistory = new Stack<Game>();
 	}
 	
 	/**
@@ -58,6 +58,40 @@ public class Game {
 		
 		//Setup Score
 		Score = 0;
+	}
+	
+	/**
+	 * Gets stock
+	 * @return stock
+	 */
+	public Stock getStock() {
+		return stock;
+	}
+	
+	/**
+	 * Gets waste
+	 * @return waste
+	 */
+	public Waste getWaste() {
+		return waste;
+	}
+	
+	/**
+	 * Gets foundation index i
+	 * @param i index of foundation to get
+	 * @return foundations[i]
+	 */
+	public Foundation getFoundation(int i) {
+		return foundations[i];
+	}
+	
+	/**
+	 * Gets tableau index i
+	 * @param i index of tableau to get
+	 * @return tableaus[i]
+	 */
+	public Tableau getTableau(int i) {
+		return tableaus[i];
 	}
 	
 	/**
