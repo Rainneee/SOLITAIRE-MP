@@ -13,7 +13,7 @@ public class CongratsController {
 	public void message(Main main) {
 		this.main = main;
 		
-		//playerName.setText(value); value = initiated player sa main
+		playerName.setText(Main.player); 
 		//score.setText(""+ valueofscore) value of score = value record sa main;
 		//main.  tagarecord ng score from main
 		

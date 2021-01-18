@@ -19,8 +19,8 @@ public class PlayerController {
 	@FXML
 	public void enter() {
 		//reference here yung player na initialized sa Main
-		//Main. = (playerName.getText().compareTo("") == 0)? "Player" : playerName.getText();
+		Main.player = (playerName.getText().compareTo("") == 0)? "Player" : playerName.getText();
 		//dito naman yung calling ng method ng game from main
-		//main.
+		main.openCongrats(); // try lang if gumagana
 	}
 }

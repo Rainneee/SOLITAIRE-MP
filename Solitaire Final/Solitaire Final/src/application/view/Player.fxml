@@ -43,7 +43,10 @@
             </DropShadow>
          </effect>
       </Label>
-      <TextField fx:id="playerName" layoutX="367.0" layoutY="323.0" prefHeight="54.0" prefWidth="266.0" />
+      <TextField fx:id="playerName" alignment="CENTER" layoutX="367.0" layoutY="323.0" prefHeight="54.0" prefWidth="266.0">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="21.0" />
+         </font></TextField>
       <Button layoutX="458.0" layoutY="402.0" mnemonicParsing="false" onAction="#enter" opacity="0.91" text="ENTER" textFill="#070000" underline="true">
          <font>
             <Font name="Bernard MT Condensed" size="23.0" />

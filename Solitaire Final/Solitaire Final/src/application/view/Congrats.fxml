@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CongratsController">
    <children>
       <ImageView fitHeight="700.0" fitWidth="1000.0" pickOnBounds="true">
@@ -16,7 +15,7 @@
             <Image url="@COMPRESSED%20CARDS/MainWallpaper.png" />
          </image>
       </ImageView>
-      <Label layoutX="350.0" layoutY="184.0" text="You Won!" textFill="#070000" underline="true">
+      <Label alignment="CENTER" layoutX="367.0" layoutY="187.0" text="You Won!" textFill="#070000" underline="true">
          <font>
             <Font name="Bernard MT Condensed" size="78.0" />
          </font>
@@ -24,7 +23,7 @@
             <DropShadow color="WHITE" height="129.84" radius="95.71000000000001" spread="0.62" width="255.0" />
          </effect>
       </Label>
-      <Label fx:id="playerName" layoutX="363.0" layoutY="296.0" text="Player Name" textFill="#070000" underline="true">
+      <Label fx:id="playerName" alignment="CENTER" contentDisplay="CENTER" layoutX="380.0" layoutY="296.0" text="Player Name" textAlignment="CENTER" textFill="#070000" underline="true" wrapText="true">
          <font>
             <Font name="Bernard MT Condensed" size="53.0" />
          </font>
@@ -32,7 +31,7 @@
             <DropShadow color="WHITE" height="70.76" radius="45.765" spread="0.62" width="114.3" />
          </effect>
       </Label>
-      <Label fx:id="score" layoutX="483.0" layoutY="393.0" text="0" textFill="#070000" underline="true">
+      <Label fx:id="score" alignment="CENTER" contentDisplay="CENTER" layoutX="496.0" layoutY="393.0" text="0" textAlignment="CENTER" textFill="#070000" underline="true" wrapText="true">
          <font>
             <Font name="Bernard MT Condensed" size="53.0" />
          </font>
