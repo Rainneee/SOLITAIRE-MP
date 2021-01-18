@@ -11,7 +11,6 @@
 
 <AnchorPane fx:id="gamePane" maxHeight="700.0" maxWidth="1000.0" minHeight="700.0" minWidth="1000.0" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-image: url('@GameBackground.png');" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainGameController">
    <children>
-      <StackPane fx:id="waste" layoutX="180.0" layoutY="60.0" prefHeight="150.0" prefWidth="100.0" />
       <Canvas fx:id="gameCanvas" height="700.0" width="1000.0" />
       <ImageView fitHeight="700.0" fitWidth="1000.0" pickOnBounds="true">
          <image>
@@ -23,7 +22,8 @@
             <Label layoutX="30.0" layoutY="66.0" text="Recycle" />
          </children>
       </AnchorPane>
-      <StackPane fx:id="stock" layoutX="45.0" layoutY="60.0" prefHeight="150.0" prefWidth="100.0" />
+      <StackPane fx:id="stock" layoutX="45.0" layoutY="60.0" onMouseClicked="#stockClick" prefHeight="150.0" prefWidth="100.0" />
+      <StackPane fx:id="waste" layoutX="180.0" layoutY="60.0" prefHeight="150.0" prefWidth="100.0" />
       <AnchorPane layoutX="855.0" layoutY="60.0" prefHeight="150.0" prefWidth="100.0" style="-fx-border-style: solid; -fx-border-radius: 10;" />
       <AnchorPane layoutX="720.0" layoutY="60.0" prefHeight="150.0" prefWidth="100.0" style="-fx-border-style: solid; -fx-border-radius: 10;" />
       <AnchorPane layoutX="585.0" layoutY="60.0" prefHeight="150.0" prefWidth="100.0" style="-fx-border-style: solid; -fx-border-radius: 10;" />

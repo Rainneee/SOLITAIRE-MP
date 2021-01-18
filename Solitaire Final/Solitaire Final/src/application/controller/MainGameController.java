@@ -42,6 +42,7 @@ public class MainGameController {
 	private Double cardWidth;
 	private StackPane[] foundations;
 	private StackPane[] tableaus;
+	private Stack<Game> moveHistory;
 
 	public void setMain(Main main) {
 		this.main = main;
@@ -58,6 +59,7 @@ public class MainGameController {
 	
 	public void init() {
 		currentGame = new Game();
+		moveHistory = new Stack<Game>();
 		
 		cardHeight = (double) 122;
 		cardWidth = (double) 100;
@@ -168,4 +170,47 @@ public class MainGameController {
 		return pane;
 	}
 	
+	public void move(boolean success) {
+		if(!success) {
+			undoMove();
+		}
+		draw();
+	}
+	
+	public void undoMove() {
+		this.currentGame = moveHistory.pop();
+	}
+	
+	@FXML
+	public void stockClick() {
+		move(handleStockClick());
+	}
+	
+	public boolean handleStockClick() {
+		moveHistory.push(this.currentGame);
+		
+		Stock currentStock = currentGame.getStock();
+		if(currentStock.isEmpty()) {
+			return recycleWaste();
+		}
+		else {
+			currentGame.getWaste().receiveFromStock(currentStock.deal());
+			return true;
+		}
+	}
+	
+	public boolean recycleWaste() {
+		Waste currentWaste = currentGame.getWaste();
+		if(currentWaste.isEmpty()) {
+			return false;
+		}
+		else {
+			Stack<Card> tempStack = new Stack<Card>();
+			while(!currentWaste.isEmpty()) {
+				tempStack.push(currentWaste.deal());
+			}
+			currentGame.getStock().setStock(tempStack);
+			return true;
+		}
+	}
 }
