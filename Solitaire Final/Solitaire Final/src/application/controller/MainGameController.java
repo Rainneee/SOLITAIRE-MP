@@ -87,6 +87,10 @@ public class MainGameController {
 		tableaus[5] = tableau6;
 		tableaus[6] = tableau7;
 		
+		for(int i = 0; i < 7; i++) {
+			int column = i;
+			tableaus[i].setOnMouseClicked(event -> emptyTableauClick(column));
+		}
 	}
 	
 	public void draw() {
@@ -168,6 +172,7 @@ public class MainGameController {
 				tableaus[i].setAlignment(cardPane, Pos.TOP_CENTER);
 				cardPane.setTranslateY(offset);
 				tableaus[i].getChildren().add(cardPane);
+				tableaus[i].setPickOnBounds(false);
 				offset += 20;
 				
 			}
@@ -283,6 +288,30 @@ public class MainGameController {
 					}
 					move(true);
 				}
+			}
+		}
+	}
+	
+	
+	public void emptyTableauClick(int column) {
+		Tableau currentTableau = currentGame.getTableau(column);
+		if(isFirstClick) {
+			isFirstClick = true;
+			cardPicked = null;
+			sourceStack = null;
+		}
+		else {
+			if(!currentTableau.isValidTableauMove(cardPicked)) {
+				move(false);
+			}
+			else {
+				if(sourceStack == null) {
+					currentTableau.acceptCard(cardPicked);
+				}
+				else {
+					currentTableau.acceptCard(sourceStack);
+				}
+				move(true);
 			}
 		}
 	}
