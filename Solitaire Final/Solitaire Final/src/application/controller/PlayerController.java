@@ -20,7 +20,8 @@ public class PlayerController {
 	public void enter() {
 		//reference here yung player na initialized sa Main
 		Main.player = (playerName.getText().compareTo("") == 0)? "Player" : playerName.getText();
+		main.openGame();
 		//dito naman yung calling ng method ng game from main
-		main.openCongrats(); // try lang if gumagana
+		//main.openCongrats(); // try lang if gumagana
 	}
 }
