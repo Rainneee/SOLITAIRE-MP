@@ -48,6 +48,15 @@ public class Stock {
 	}
 	
 	/**
+	 * Peeks top of Stock
+	 * @return
+	 */
+	
+	public Card peek() {
+		return stock.peek();
+	}
+	
+	/**
 	 * String representation of a Stock
 	 */
 	public String toString() {

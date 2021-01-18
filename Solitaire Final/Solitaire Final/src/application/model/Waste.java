@@ -22,6 +22,7 @@ public class Waste {
 	 * @param card
 	 */
 	public void receiveFromStock(Card card) {
+		card.turnFaceup();
 		waste.push(card);
 	}
 	
@@ -48,6 +49,20 @@ public class Waste {
 	public Card deal() {
 		if(!isEmpty()) {
 			return waste.pop();
+		}
+		else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Peeks at the top of the waste
+	 * @return
+	 */
+	
+	public Card peek() {
+		if(!isEmpty()) {
+			return waste.peek();
 		}
 		else {
 			return null;

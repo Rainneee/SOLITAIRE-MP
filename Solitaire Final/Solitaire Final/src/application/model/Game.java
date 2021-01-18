@@ -61,6 +61,14 @@ public class Game {
 	}
 	
 	/**
+	 * Gets score
+	 * @return
+	 */
+	public int getScore() {
+		return Score;
+	}
+	
+	/**
 	 * Gets stock
 	 * @return stock
 	 */

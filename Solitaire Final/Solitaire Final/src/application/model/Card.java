@@ -110,6 +110,19 @@ public class Card {
 	}
 	
 	/**
+	 * Gets the url of the image file that represents the card
+	 * @return
+	 */
+	public String getURL() {
+		if(isFaceDown()) {
+			return "/application/resources/back.png";
+		}
+		else {
+			return "/application/resources/" + toString() + ".png";
+		}
+	}
+	
+	/**
 	 * String representation of a card
 	 */
 	public String toString() {

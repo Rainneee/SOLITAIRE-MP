@@ -69,6 +69,19 @@ public class Foundation {
 	}
 	
 	/**
+	 * Peeks top of foundation
+	 * @return
+	 */
+	public Card peek() {
+		if(!isEmpty()) {
+			return foundation.peek();
+		}
+		else {
+			return null;
+		}
+	}
+	
+	/**
 	 * String representation of a Foundation
 	 */
 	public String toString() {
