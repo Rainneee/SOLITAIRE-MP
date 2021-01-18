@@ -58,6 +58,10 @@ public class Main extends Application {
 		}
 	}
 	
+	public void exit() {
+		primaryStage.close();
+	}
+	
 	public static void main(String[] args) {
 		launch(args);
 

@@ -21,7 +21,7 @@ public class MainMenuController {
 	}
 	
 	public void exit() {
-		//main.
+		main.exit();
 	}
 
 }
