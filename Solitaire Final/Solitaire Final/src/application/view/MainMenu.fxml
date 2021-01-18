@@ -14,7 +14,7 @@
    <children>
       <ImageView fitHeight="707.0" fitWidth="1009.0" layoutX="-8.0" layoutY="-6.0" opacity="0.96" pickOnBounds="true">
          <image>
-            <Image url="@../../../COMPRESSED%20CARDS/MainWallpaper.png" />
+            <Image url="@COMPRESSED%20CARDS/MainWallpaper.png" />
          </image>
       </ImageView>
       <Button layoutX="310.0" layoutY="275.0" mnemonicParsing="false" onAction="#startGame" opacity="0.91" prefHeight="88.0" prefWidth="381.0" text="NEW GAME" underline="true">
