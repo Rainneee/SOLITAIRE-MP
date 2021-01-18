@@ -147,6 +147,8 @@ public class MainGameController {
 				Pane cardPane = getNewPane();
 				cardPane.setStyle("-fx-background-image: url('" + card.getURL() + "');"
 					+ "-fx-background-size: 100px 150px; -fx-opacity: 1");
+				int column = i;
+				cardPane.setOnMouseClicked(event -> foundationClick(column));
 				foundations[i].getChildren().add(cardPane);
 			}
 		}
@@ -183,6 +185,11 @@ public class MainGameController {
 	public void move(boolean success) {
 		if(!success) {
 			undoMove();
+		}
+		else {
+			isFirstClick = true;
+			cardPicked = null;
+			sourceStack = null;
 		}
 		draw();
 	}
@@ -224,6 +231,7 @@ public class MainGameController {
 		if(!isFirstClick) {
 			isFirstClick = true;
 			cardPicked = null;
+			sourceStack = null;
 		}
 		else {
 			if(currentGame.getWaste().isEmpty()) {
@@ -247,7 +255,9 @@ public class MainGameController {
 			cloneGame();
 			sourceStack = currentTableau.getPile(row);
 			if(sourceStack.isEmpty()) {
-				move(false);
+				isFirstClick = false;
+				cardPicked = null;
+				sourceStack = null;
 			}
 			else {
 				isFirstClick = false;
@@ -265,13 +275,21 @@ public class MainGameController {
 					move(false);
 				}
 				else {
-					currentTableau.acceptCard(sourceStack);
+					if(sourceStack == null) {
+						currentTableau.acceptCard(cardPicked);
+					}
+					else {
+						currentTableau.acceptCard(sourceStack);
+					}
 					move(true);
 				}
 			}
 		}
 	}
 	
+	public void foundationClick(int column) {
+		
+	}
 	
 	public void cloneGame() {
 		Game cloneGame = currentGame.getClone();
