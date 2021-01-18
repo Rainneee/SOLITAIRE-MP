@@ -22,6 +22,8 @@ public class Game {
 	private IntegerProperty drawType;
 	private static Integer[] drawNumber = { 1, 3 };
 	private List<Deque<Card>> playArea;
+	
+	public boolean didrecycle = false;
 
 	/**
 	 * Constructor with no arguments. When it is called, it creates a new Deck.
@@ -127,6 +129,7 @@ public class Game {
 				this.draw.push(currentCard);
 			}
 			this.drawDiscard.clear();
+			didrecycle = true;
 			return;
 		}
 
@@ -136,10 +139,11 @@ public class Game {
 			this.draw.peek().setIsFaceUp(true);
 			this.drawDiscard.push(this.draw.pop());
 		}
+		didrecycle = false;
 	}
 
 	/**
-	 * Move a card from any stack to one of the playArea stacks. The main different
+	 * Move a card from any stack to one of the playArea stacks. The main difference
 	 * between this function and moveCardToFoundation is which card checking
 	 * function is called. If it is valid, then all cards above the card to be moved
 	 * are moved with it. This method does not necessarily move a card if the move
@@ -171,12 +175,14 @@ public class Game {
 		this.tempCardStack.clear();
 		if (!source.isEmpty())
 			source.peek().setIsFaceUp(true);
+		
+		didrecycle = false;
 		return true;
 	}
 
 	/**
 	 * Move a card from any stack to one of the foundation stacks. The main
-	 * different between this function and moveCardToStack is which card checking
+	 * difference between this function and moveCardToStack is which card checking
 	 * function is called. If it is valid, then all cards above the card to be moved
 	 * are moved with it. This method does not necessarily move a card if the move
 	 * is not valid
@@ -197,10 +203,12 @@ public class Game {
 		} else if (source.peek() != cardToMove) {
 			return false;
 		}
-
+		
 		dest.push(source.pop());
 		if (!source.isEmpty())
 			source.peek().setIsFaceUp(true);
+		
+		didrecycle = false;
 		return true;
 	}
 

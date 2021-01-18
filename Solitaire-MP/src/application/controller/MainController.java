@@ -102,9 +102,6 @@ public class MainController extends SuperController {
 		mainPane.setCenter((Pane) appPaneMap.get("titleScreen"));
 	}
 
-
-
-
 	// Event Listener on MenuItem[#aboutMenuItem].onAction
 	@FXML
 	public void exitEventHandler(ActionEvent event) {

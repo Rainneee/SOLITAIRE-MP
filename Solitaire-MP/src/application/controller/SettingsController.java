@@ -10,8 +10,6 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 
@@ -21,12 +19,7 @@ import javafx.scene.control.CheckBox;
 public class SettingsController extends SuperController {
 
 	private SolitaireSettings appSettingsObject;
-	private Double oldMasterVolume;
-	private Double oldMusicVolume;
-	private Double oldEffectsVolume;
-	private Boolean oldUndo;
-	private Boolean oldSolveable;
-	private Boolean oldShowTime;
+	
 	private Integer oldDrawType;
 	private Integer oldCardBackIndex;
 
