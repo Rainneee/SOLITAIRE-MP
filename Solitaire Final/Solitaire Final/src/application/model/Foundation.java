@@ -82,6 +82,14 @@ public class Foundation {
 	}
 	
 	/**
+	 * Gets foundation deck
+	 * @return
+	 */
+	public Stack<Card> getFoundation() {
+		return foundation;
+	}
+	
+	/**
 	 * String representation of a Foundation
 	 */
 	public String toString() {

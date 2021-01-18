@@ -48,10 +48,17 @@ public class Stock {
 	}
 	
 	/**
+	 * Gets stock deck
+	 * @return
+	 */
+	public Stack<Card> getStock() {
+		return stock;
+	}
+	
+	/**
 	 * Peeks top of Stock
 	 * @return
 	 */
-	
 	public Card peek() {
 		return stock.peek();
 	}

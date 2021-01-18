@@ -22,13 +22,13 @@ public class MainGameController {
 	private Label playerName, scoreSheet;
 	
 	@FXML
-	private AnchorPane stock, waste, foundation1, foundation2, foundation3, foundation4;
+	private StackPane stock, waste;
+	
+	@FXML
+	private StackPane foundation1, foundation2, foundation3, foundation4;
 	
 	@FXML
 	private StackPane tableau1, tableau2, tableau3, tableau4, tableau5, tableau6, tableau7;
-	
-	@FXML
-	private Button recycleWaste;
 	
 	@FXML
 	private AnchorPane gamePane;
@@ -40,6 +40,8 @@ public class MainGameController {
 	private Game currentGame;
 	private Double cardHeight;
 	private Double cardWidth;
+	private StackPane[] foundations;
+	private StackPane[] tableaus;
 
 	public void setMain(Main main) {
 		this.main = main;
@@ -60,10 +62,26 @@ public class MainGameController {
 		cardHeight = (double) 122;
 		cardWidth = (double) 100;
 		
+		//Initialize foundations 
+		foundations = new StackPane[4];
+		foundations[0] = foundation1;
+		foundations[1] = foundation2;
+		foundations[2] = foundation3;
+		foundations[3] = foundation4;
 		
+		//Initialize tableaus
+		tableaus = new StackPane[7];
+		tableaus[0] = tableau1;
+		tableaus[1] = tableau2;
+		tableaus[2] = tableau3;
+		tableaus[3] = tableau4;
+		tableaus[4] = tableau5;
+		tableaus[5] = tableau6;
+		tableaus[6] = tableau7;
 	}
 	
 	public void draw() {
+		clearBoard();
 		//Draw Stock
 		drawStock();
 		
@@ -80,237 +98,74 @@ public class MainGameController {
 		scoreSheet.setText(String.valueOf(currentGame.getScore()));
 	}
 	
+	public void clearBoard() {
+		stock.getChildren().clear();
+		waste.getChildren().clear();
+		for(int i = 0; i < 4; i++) {
+			foundations[i].getChildren().clear();
+		}
+		for(int i = 0; i < 7; i++) {
+			tableaus[i].getChildren().clear();
+		}
+	}
+	
 	public void drawStock() {
 		Stock gameStock = currentGame.getStock();
 		if(!gameStock.isEmpty()) {
+			Pane cardPane = getNewPane();
 			Card stockCard = gameStock.peek();
-			recycleWaste.setStyle("-fx-background-image: url('" + stockCard.getURL() + "');"
+			cardPane.setStyle("-fx-background-image: url('" + stockCard.getURL() + "');"
 					+ "-fx-background-size: 100px 150px; -fx-opacity: 1");
-		}
-		else {
-			recycleWaste.setStyle("-fx-background-image: none;"
-					+ "-fx-background-size: 100px 150px; -fx-opacity: 0");
+			stock.getChildren().add(cardPane);
 		}
 	}
 	
 	public void drawWaste() {
 		Waste gameWaste = currentGame.getWaste();
 		if(!gameWaste.isEmpty()) {
+			Pane cardPane = getNewPane();
 			Card wasteCard = gameWaste.peek();
-			waste.setStyle("-fx-background-image: url('" + wasteCard.getURL() + "');"
+			cardPane.setStyle("-fx-background-image: url('" + wasteCard.getURL() + "');"
 					+ "-fx-background-size: 100px 150px; -fx-opacity: 1");
-		}
-		else {
-			waste.setStyle("-fx-background-image: none;"
-					+ "-fx-background-size: 100px 150px; -fx-opacity: 0");
+			waste.getChildren().add(cardPane);
 		}
 	}
 	
 	public void drawFoundations() {
-		//foundation1
-		Foundation currentFoundation = currentGame.getFoundation(0);
-		if(!currentFoundation.isEmpty()) {
-			Card foundationCard = currentFoundation.peek();
-			foundation1.setStyle("-fx-background-image: url('" + foundationCard.getURL() + "');"
+		for(int i = 0; i < 4; i++) {
+			Foundation currentFoundation = currentGame.getFoundation(i);
+			for(Card card : currentFoundation.getFoundation()) {
+				Pane cardPane = getNewPane();
+				cardPane.setStyle("-fx-background-image: url('" + card.getURL() + "');"
 					+ "-fx-background-size: 100px 150px; -fx-opacity: 1");
-		}
-		else {
-			foundation1.setStyle("-fx-background-image: none;"
-					+ "-fx-background-size: 100px 150px; -fx-opacity: 1");
-		}
-		
-		//foundation2
-		currentFoundation = currentGame.getFoundation(1);
-		if(!currentFoundation.isEmpty()) {
-			Card foundationCard = currentFoundation.peek();
-			foundation2.setStyle("-fx-background-image: url('" + foundationCard.getURL() + "');"
-					+ "-fx-background-size: 100px 150px; -fx-opacity: 1");
-		}
-		else {
-			foundation2.setStyle("-fx-background-image: none;"
-					+ "-fx-background-size: 100px 150px; -fx-opacity: 1");
-		}
-				
-		//foundation3
-		currentFoundation = currentGame.getFoundation(2);
-		if(!currentFoundation.isEmpty()) {
-			Card foundationCard = currentFoundation.peek();
-			foundation3.setStyle("-fx-background-image: url('" + foundationCard.getURL() + "');"
-					+ "-fx-background-size: 100px 150px; -fx-opacity: 1");
-		}
-		else {
-			foundation3.setStyle("-fx-background-image: none;"
-					+ "-fx-background-size: 100px 150px; -fx-opacity: 1");
-		}		
-		
-		//foundation4
-		currentFoundation = currentGame.getFoundation(3);
-		if(!currentFoundation.isEmpty()) {
-			Card foundationCard = currentFoundation.peek();
-			foundation4.setStyle("-fx-background-image: url('" + foundationCard.getURL() + "');"
-					+ "-fx-background-size: 100px 150px; -fx-opacity: 1");
-		}
-		else {
-			foundation4.setStyle("-fx-background-image: none;"
-					+ "-fx-background-size: 100px 150px; -fx-opacity: 1");
+				foundations[i].getChildren().add(cardPane);
+			}
 		}
 	}
 	
 	public void drawTableaus() {
-		//tableau1
-		Tableau currentTableau = currentGame.getTableau(0);
-		if(!currentTableau.isEmpty()) {
+		for(int i = 0; i < 7; i++) {
 			int offset = 0;
-			for(Card tableauCard : currentTableau.getTableau()) {
-				Pane cardPane = new Pane();
-				cardPane.setMinSize(100,150);
-				cardPane.setPrefSize(100,150);
-				cardPane.setMaxSize(100,150);
-				cardPane.setStyle("-fx-background-image: url('" + tableauCard.getURL() + "');"
-					+ "-fx-background-size: 100px 150px; -fx-opacity: 1");
-
-				tableau1.setAlignment(cardPane, Pos.TOP_CENTER);
-				cardPane.setTranslateY(offset);
-				tableau1.getChildren().add(cardPane);
-				offset += 20;
-			}
-		}
-		else {
-			tableau1.getChildren().clear();
-		}
-		
-		//tableau2
-		currentTableau = currentGame.getTableau(1);
-		if(!currentTableau.isEmpty()) {
-			int offset = 0;
-			for(Card tableauCard : currentTableau.getTableau()) {
-				Pane cardPane = new Pane();
-				cardPane.setMinSize(100,150);
-				cardPane.setPrefSize(100,150);
-				cardPane.setMaxSize(100,150);
-				cardPane.setStyle("-fx-background-image: url('" + tableauCard.getURL() + "');"
+			Tableau currentTableau = currentGame.getTableau(i);
+			for(Card card : currentTableau.getTableau()) {
+				Pane cardPane = getNewPane();
+				cardPane.setStyle("-fx-background-image: url('" + card.getURL() + "');"
 					+ "-fx-background-size: 100px 150px; -fx-opacity: 1");
 				
-				tableau2.setAlignment(cardPane, Pos.TOP_CENTER);
+				tableaus[i].setAlignment(cardPane, Pos.TOP_CENTER);
 				cardPane.setTranslateY(offset);
-				tableau2.getChildren().add(cardPane);
+				tableaus[i].getChildren().add(cardPane);
 				offset += 20;
 			}
-		}
-		else {
-			tableau2.getChildren().clear();
-		}
-		
-		//tableau3
-		currentTableau = currentGame.getTableau(2);
-		if(!currentTableau.isEmpty()) {
-			int offset = 0;
-			for(Card tableauCard : currentTableau.getTableau()) {
-				Pane cardPane = new Pane();
-				cardPane.setMinSize(100,150);
-				cardPane.setPrefSize(100,150);
-				cardPane.setMaxSize(100,150);
-				cardPane.setStyle("-fx-background-image: url('" + tableauCard.getURL() + "');"
-					+ "-fx-background-size: 100px 150px; -fx-opacity: 1");
-				
-				tableau3.setAlignment(cardPane, Pos.TOP_CENTER);
-				cardPane.setTranslateY(offset);
-				tableau3.getChildren().add(cardPane);
-				offset += 20;
-			}
-		}
-		else {
-			tableau3.getChildren().clear();
-		}
-		
-		//tableau4
-		currentTableau = currentGame.getTableau(3);
-		if(!currentTableau.isEmpty()) {
-			int offset = 0;
-			for(Card tableauCard : currentTableau.getTableau()) {
-				Pane cardPane = new Pane();
-				cardPane.setMinSize(100,150);
-				cardPane.setPrefSize(100,150);
-				cardPane.setMaxSize(100,150);
-				cardPane.setStyle("-fx-background-image: url('" + tableauCard.getURL() + "');"
-					+ "-fx-background-size: 100px 150px; -fx-opacity: 1");
-				
-				tableau4.setAlignment(cardPane, Pos.TOP_CENTER);
-				cardPane.setTranslateY(offset);
-				tableau4.getChildren().add(cardPane);
-				offset += 20;
-			}
-		}
-		else {
-			tableau4.getChildren().clear();
-		}
-		
-		//tableau5
-		currentTableau = currentGame.getTableau(4);
-		if(!currentTableau.isEmpty()) {
-			int offset = 0;
-			for(Card tableauCard : currentTableau.getTableau()) {
-				Pane cardPane = new Pane();
-				cardPane.setMinSize(100,150);
-				cardPane.setPrefSize(100,150);
-				cardPane.setMaxSize(100,150);
-				cardPane.setStyle("-fx-background-image: url('" + tableauCard.getURL() + "');"
-					+ "-fx-background-size: 100px 150px; -fx-opacity: 1");
-				
-				tableau5.setAlignment(cardPane, Pos.TOP_CENTER);
-				cardPane.setTranslateY(offset);
-				tableau5.getChildren().add(cardPane);
-				offset += 20;
-			}
-		}
-		else {
-			tableau5.getChildren().clear();
-		}
-		
-		//tableau6
-		currentTableau = currentGame.getTableau(5);
-		if(!currentTableau.isEmpty()) {
-			int offset = 0;
-			for(Card tableauCard : currentTableau.getTableau()) {
-				Pane cardPane = new Pane();
-				cardPane.setMinSize(100,150);
-				cardPane.setPrefSize(100,150);
-				cardPane.setMaxSize(100,150);
-				cardPane.setStyle("-fx-background-image: url('" + tableauCard.getURL() + "');"
-					+ "-fx-background-size: 100px 150px; -fx-opacity: 1");
-				
-				tableau6.setAlignment(cardPane, Pos.TOP_CENTER);
-				cardPane.setTranslateY(offset);
-				tableau6.getChildren().add(cardPane);
-				offset += 20;
-			}
-		}
-		else {
-			tableau6.getChildren().clear();
-		}
-		
-		//tableau7
-		currentTableau = currentGame.getTableau(6);
-		if(!currentTableau.isEmpty()) {
-			int offset = 0;
-			for(Card tableauCard : currentTableau.getTableau()) {
-				Pane cardPane = new Pane();
-				cardPane.setMinSize(100,150);
-				cardPane.setPrefSize(100,150);
-				cardPane.setMaxSize(100,150);
-				cardPane.setStyle("-fx-background-image: url('" + tableauCard.getURL() + "');"
-					+ "-fx-background-size: 100px 150px; -fx-opacity: 1");
-				
-				tableau7.setAlignment(cardPane, Pos.TOP_CENTER);
-				cardPane.setTranslateY(offset);
-				tableau7.getChildren().add(cardPane);
-				offset += 20;
-			}
-		}
-		else {
-			tableau7.getChildren().clear();
 		}
 	}
 	
+	public Pane getNewPane() {
+		Pane pane = new Pane();
+		pane.setMinSize(100,150);
+		pane.setPrefSize(100,150);
+		pane.setMaxSize(100,150);
+		return pane;
+	}
 	
 }
