@@ -104,6 +104,9 @@ public class Tableau {
 	public Stack<Card> getPile(int y) {
 		if(y < tableau.size()) {
 			Card card = tableau.get(y);
+			if(card.isFaceDown()) {
+				return new Stack<Card>();
+			}
 		}
 		Stack<Card> stack = new Stack<Card>();
 		for(int i = tableau.size() - 1; i >= y; i--) {

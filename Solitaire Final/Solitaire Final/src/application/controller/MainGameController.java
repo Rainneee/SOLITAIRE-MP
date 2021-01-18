@@ -47,6 +47,7 @@ public class MainGameController {
 	private Card cardPicked;
 	public boolean isFirstClick = true;
 	private Double x, y;
+	private Stack<Card> sourceStack;
 
 	public void setMain(Main main) {
 		this.main = main;
@@ -64,6 +65,7 @@ public class MainGameController {
 	public void init() {
 		currentGame = new Game();
 		moveHistory = new Stack<Game>();
+		sourceStack = new Stack<Card>();
 		
 		cardHeight = (double) 122;
 		cardWidth = (double) 100;
@@ -85,11 +87,6 @@ public class MainGameController {
 		tableaus[5] = tableau6;
 		tableaus[6] = tableau7;
 		
-		//Add eventHandlers for each tableau
-		tableau1.addEventHandler(MouseEvent.MOUSE_CLICKED, e-> {
-			x = e.getX();
-			y = e.getY();
-		});
 	}
 	
 	public void draw() {
@@ -163,12 +160,14 @@ public class MainGameController {
 				Pane cardPane = getNewPane();
 				cardPane.setStyle("-fx-background-image: url('" + card.getURL() + "');"
 					+ "-fx-background-size: 100px 150px; -fx-opacity: 1");
-				int row = i;
-				//cardPane.setOnMouseClicked(event -> tableauClick(row));
+				int row = offset;
+				int column = i;
+				cardPane.setOnMouseClicked(event -> tableauClick(column, row / 20));
 				tableaus[i].setAlignment(cardPane, Pos.TOP_CENTER);
 				cardPane.setTranslateY(offset);
 				tableaus[i].getChildren().add(cardPane);
 				offset += 20;
+				
 			}
 		}
 	}
@@ -191,6 +190,9 @@ public class MainGameController {
 	public void undoMove() {
 		if(!moveHistory.isEmpty()) {
 			this.currentGame = moveHistory.pop();
+			isFirstClick = true;
+			cardPicked = null;
+			sourceStack = null;
 			clearBoard();
 			draw();
 		}
@@ -234,18 +236,42 @@ public class MainGameController {
 		}
 	}
 	
-	/*
-	public void tableauClick(int row) {
-		int column = (int) (x / 135);
+	
+	public void tableauClick(int column, int row) {
 		handleTableauClick(column, row);
 	}
 	
-	public boolean handleTableauClick(int column, int row) {
-		System.out.println(column);
-		System.out.println(row);
-		return true;
+	public void handleTableauClick(int column, int row) {
+		Tableau currentTableau = currentGame.getTableau(column);
+		if(isFirstClick) {
+			cloneGame();
+			sourceStack = currentTableau.getPile(row);
+			if(sourceStack.isEmpty()) {
+				move(false);
+			}
+			else {
+				isFirstClick = false;
+				cardPicked = sourceStack.peek();
+			}	
+		}
+		else {
+			if(row != currentTableau.getTableau().size() - 1) {
+				System.out.println(cardPicked);
+				System.out.println(sourceStack);
+				move(false);
+			}
+			else {
+				if(!currentTableau.isValidTableauMove(cardPicked)) {
+					move(false);
+				}
+				else {
+					currentTableau.acceptCard(sourceStack);
+					move(true);
+				}
+			}
+		}
 	}
-	*/
+	
 	
 	public void cloneGame() {
 		Game cloneGame = currentGame.getClone();
