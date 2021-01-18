@@ -12,7 +12,7 @@ public class MainMenuController {
 	
 	@FXML
 	public void startGame(){
-		//main.
+		main.openGame();
 	}
 	
 	@FXML
