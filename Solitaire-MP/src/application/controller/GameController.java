@@ -21,6 +21,8 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 /**
  * 
@@ -44,9 +46,6 @@ public class GameController extends SuperController implements Initializable {
 	private Integer xMargin;
 	private Integer yMargin;
 	private Integer i = 0;
-	
-	public int Score = 0;
-	public String pickCardLocation = new String(), dropCardLocation = new String();
 
 	@FXML
 	private Pane gamePane;
@@ -94,11 +93,9 @@ public class GameController extends SuperController implements Initializable {
 					return;
 				} else {
 					boolean sound = currentGame.moveCardToFoundation(cardToMove, srcStack, destStack);
-					dropCardLocation = "foundation";
 					if(sound == true)
 						drawCards();
 				}
-				
 
 			}
 		} else { 
@@ -117,7 +114,6 @@ public class GameController extends SuperController implements Initializable {
 				
 				return;
 			} else {
-				dropCardLocation = "tableau";
 				boolean sound = currentGame.moveCardToStack(cardToMove, srcStack, destStack);
 				if(sound == true)
 					drawCards();
@@ -150,7 +146,6 @@ public class GameController extends SuperController implements Initializable {
 			if (event.getX() > this.xLayout.get(1) && event.getX() < this.xLayout.get(3)) {
 				srcStack = this.currentGame.getDrawDiscard();
 				cardToMove = srcStack.peek();
-				pickCardLocation = "waste";
 			} else if (event.getX() > this.xLayout.get(foundationIndices.get(0))) { // If it's in one of the
 																					// foundations, do this
 				
@@ -169,7 +164,7 @@ public class GameController extends SuperController implements Initializable {
 				// Set the source stack based on the foundation number calculated
 				srcStack = currentGame.getAFoundation(foundationNum);
 				cardToMove = srcStack.peek();
-				pickCardLocation = "foundation";
+
 			}
 		} else { 
 			
@@ -210,7 +205,6 @@ public class GameController extends SuperController implements Initializable {
 				}
 				cardToMove = currentCard;
 			}
-			pickCardLocation = "tableau";
 
 		}
 
@@ -320,6 +314,7 @@ public class GameController extends SuperController implements Initializable {
 	 */
 
 	public void drawCards() {
+		
 		// Clear the entire canvas, so we don't get any duplicate cards
 		GraphicsContext gc = gameCanvas.getGraphicsContext2D();
 		gc.clearRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
@@ -353,11 +348,6 @@ public class GameController extends SuperController implements Initializable {
 				.multiply(this.appSettingsObject.masterVolumeProperty()).divide(10000));
 		mediaPlayer.play();
 		}*/
-		updateScore();
-		System.out.println(Score);
-		pickCardLocation = null;
-		dropCardLocation = null;
-		currentGame.didrecycle = false;
 	}
 
 	/**
@@ -497,45 +487,8 @@ public class GameController extends SuperController implements Initializable {
 	 * @param newGame (The new Game to set currentGame to)
 	 */
 	public void setCurrentGame(Game newGame) {
-		this.Score = 0;
 		this.currentGame = newGame;
 		this.currentGame.getDrawTypeProperty().bind(this.appSettingsObject.getDrawTypeProperty());
 	}
 
-	
-	public void updateScore() {
-		if(currentGame.didrecycle) {
-			Score -= 100;
-			if(Score < 0) {
-				Score = 0;
-			}
-		}
-		System.out.println("Pick: " + pickCardLocation);
-		System.out.println("Drop: " + dropCardLocation);
-		if(pickCardLocation == null) {
-			return;
-		}
-		
-		if(pickCardLocation == "waste") {
-			if(dropCardLocation == "tableau") {
-				Score += 5;
-			}
-			else if(dropCardLocation == "foundation") {
-				Score += 10;
-			}
-		}
-		else if(pickCardLocation == "tableau") {
-			if(dropCardLocation == "foundation") {
-				Score += 10;
-			}
-			else if(dropCardLocation == "tableau") {
-				Score += 5;
-			}
-		}
-		else if(pickCardLocation == "foundation") {
-			if(dropCardLocation == "tableau") {
-				Score -= 15;
-			}
-		}
-	}
 }
