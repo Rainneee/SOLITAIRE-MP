@@ -20,7 +20,7 @@ public class Main extends Application {
 		openMainMenu();
 	}
 	
-	private void openMainMenu() {
+	public void openMainMenu() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("view/MainMenu.fxml"));

@@ -20,7 +20,7 @@
             <Image url="@COMPRESSED%20CARDS/MainWallpaper.png" />
          </image>
       </ImageView>
-      <Label layoutX="264.0" layoutY="234.0" text="ENTER PLAYER NAME" textFill="#0d0303">
+      <Label layoutX="264.0" layoutY="234.0" text="ENTER PLAYER NAME" textFill="#0d0303" underline="true">
          <font>
             <Font name="Bernard MT Condensed" size="63.0" />
          </font>
@@ -44,7 +44,7 @@
          </effect>
       </Label>
       <TextField fx:id="playerName" layoutX="367.0" layoutY="323.0" prefHeight="54.0" prefWidth="266.0" />
-      <Button layoutX="458.0" layoutY="402.0" mnemonicParsing="false" onAction="#enter" opacity="0.91" text="ENTER">
+      <Button layoutX="458.0" layoutY="402.0" mnemonicParsing="false" onAction="#enter" opacity="0.91" text="ENTER" textFill="#070000" underline="true">
          <font>
             <Font name="Bernard MT Condensed" size="23.0" />
          </font>
