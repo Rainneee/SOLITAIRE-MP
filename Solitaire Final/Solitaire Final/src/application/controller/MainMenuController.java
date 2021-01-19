@@ -17,7 +17,7 @@ public class MainMenuController {
 	
 	@FXML
 	public void seeHighScores(){
-		//main.
+		main.openHighScores();
 	}
 	
 	public void exit() {

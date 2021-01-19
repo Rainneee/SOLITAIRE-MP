@@ -23,7 +23,7 @@
             <DropShadow color="#f2f0f0" height="30.52" radius="15.4875" spread="0.49" width="33.43" />
          </effect>
       </Label>
-      <Label fx:id="playerName" alignment="CENTER" contentDisplay="CENTER" layoutX="381.0" layoutY="284.0" text="Player Name" textFill="#070000" underline="true">
+      <Label fx:id="playerName" alignment="BASELINE_CENTER" contentDisplay="CENTER" layoutX="339.0" layoutY="284.0" prefHeight="66.0" prefWidth="342.0" text="Player Name" textAlignment="CENTER" textFill="#070000" underline="true">
          <font>
             <Font name="Bernard MT Condensed" size="53.0" />
          </font>
@@ -31,7 +31,7 @@
             <DropShadow color="#f2ebeb" height="21.39" radius="12.43" spread="0.62" width="30.33" />
          </effect>
       </Label>
-      <Label fx:id="score" alignment="CENTER" contentDisplay="CENTER" layoutX="497.0" layoutY="382.0" text="0" textFill="#070000" underline="true">
+      <Label fx:id="score" alignment="CENTER" contentDisplay="CENTER" layoutX="454.0" layoutY="377.0" prefHeight="66.0" prefWidth="111.0" text="0" textFill="#070000" underline="true">
          <font>
             <Font name="Bernard MT Condensed" size="53.0" />
          </font>

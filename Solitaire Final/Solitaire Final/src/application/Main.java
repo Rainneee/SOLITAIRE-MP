@@ -1,13 +1,11 @@
 package application;
 	
-import java.util.Stack;
-
 import application.controller.CongratsController;
 import application.controller.GameOverController;
+import application.controller.HighScoresController;
 import application.controller.MainGameController;
 import application.controller.MainMenuController;
 import application.controller.PlayerController;
-import application.model.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -66,7 +64,23 @@ public class Main extends Application {
 		}
 	}
 	public void openHighScores() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("view/HighScores.fxml"));
+			AnchorPane highScoresFXML = (AnchorPane) loader.load();
+	
+			Scene scene = new Scene(highScoresFXML);
+			primaryStage.setTitle("High Scores");
+			primaryStage.setScene(scene);
+			primaryStage.show();
+			
+			HighScoresController highScoresController = loader.getController();
+			highScoresController.setTable();
+			highScoresController.setMain(this);
 		
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void getPlayer(){
