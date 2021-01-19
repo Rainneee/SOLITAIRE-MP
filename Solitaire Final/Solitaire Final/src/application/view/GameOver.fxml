@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,31 +14,22 @@
             <Image url="@COMPRESSED%20CARDS/Background/background1.png" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" layoutX="335.0" layoutY="172.0" text="Game Over!" textFill="#070000" underline="true">
+      <Label alignment="CENTER" layoutX="326.0" layoutY="172.0" text="Game Over!" textFill="WHITE" AnchorPane.leftAnchor="326.0" AnchorPane.rightAnchor="325.0">
          <font>
             <Font name="Bernard MT Condensed" size="78.0" />
          </font>
-         <effect>
-            <DropShadow color="#f2f0f0" height="30.52" radius="15.4875" spread="0.49" width="33.43" />
-         </effect>
       </Label>
-      <Label fx:id="playerName" alignment="CENTER" contentDisplay="CENTER" layoutX="339.0" layoutY="284.0" prefHeight="66.0" prefWidth="342.0" text="Player Name" textAlignment="CENTER" textFill="#070000" underline="true">
+      <Label fx:id="playerName" alignment="BASELINE_CENTER" contentDisplay="CENTER" layoutX="326.0" layoutY="284.0" prefHeight="66.0" prefWidth="342.0" text="Player Name" textAlignment="CENTER" textFill="#d3a550" AnchorPane.leftAnchor="326.0" AnchorPane.rightAnchor="325.0">
+         <font>
+            <Font name="Century Gothic" size="53.0" />
+         </font>
+      </Label>
+      <Label fx:id="score" alignment="CENTER" contentDisplay="CENTER" layoutX="454.0" layoutY="377.0" prefHeight="66.0" prefWidth="111.0" text="0" textFill="WHITE" AnchorPane.leftAnchor="326.0" AnchorPane.rightAnchor="325.0">
          <font>
             <Font name="Bernard MT Condensed" size="53.0" />
          </font>
-         <effect>
-            <DropShadow color="#f2ebeb" height="21.39" radius="12.43" spread="0.62" width="30.33" />
-         </effect>
       </Label>
-      <Label fx:id="score" alignment="CENTER" contentDisplay="CENTER" layoutX="454.0" layoutY="377.0" prefHeight="66.0" prefWidth="111.0" text="0" textFill="#070000" underline="true">
-         <font>
-            <Font name="Bernard MT Condensed" size="53.0" />
-         </font>
-         <effect>
-            <DropShadow color="#f8f8f8" height="18.66" radius="15.825" spread="0.62" width="46.64" />
-         </effect>
-      </Label>
-      <Button layoutX="752.0" layoutY="618.0" mnemonicParsing="false" onAction="#goToMainMenu" opacity="0.91" prefHeight="31.0" prefWidth="219.0" text="Back to Main Menu" textFill="#070000" underline="true">
+      <Button layoutX="400.0" layoutY="467.0" mnemonicParsing="false" onAction="#goToMainMenu" opacity="0.91" prefHeight="31.0" prefWidth="219.0" style="-fx-background-color: #d3a550;" text="Back to Main Menu" textFill="#070000" AnchorPane.leftAnchor="326.0" AnchorPane.rightAnchor="325.0">
          <font>
             <Font name="Bernard MT Condensed" size="25.0" />
          </font>
