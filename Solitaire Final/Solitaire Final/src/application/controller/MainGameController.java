@@ -39,8 +39,6 @@ public class MainGameController {
 	
 	private Main main;
 	private Game currentGame;
-	private Double cardHeight;
-	private Double cardWidth;
 	private StackPane[] foundations;
 	private StackPane[] tableaus;
 	private Stack<Game> moveHistory;
@@ -48,6 +46,7 @@ public class MainGameController {
 	public boolean isFirstClick = true;
 	private Double x, y;
 	private Stack<Card> sourceStack;
+	private boolean fromWaste, fromTableau, fromFoundation;
 
 	public void setMain(Main main) {
 		this.main = main;
@@ -66,9 +65,9 @@ public class MainGameController {
 		currentGame = new Game();
 		moveHistory = new Stack<Game>();
 		sourceStack = new Stack<Card>();
-		
-		cardHeight = (double) 122;
-		cardWidth = (double) 100;
+		fromWaste = false;
+		fromTableau = false;
+		fromFoundation = false;
 		
 		//Initialize foundations 
 		foundations = new StackPane[4];
@@ -209,6 +208,11 @@ public class MainGameController {
 			cardPicked = null;
 			sourceStack = null;
 		}
+		
+		fromWaste = false;
+		fromFoundation = false;
+		fromTableau = false;
+		
 		draw();
 	}
 	
@@ -218,6 +222,9 @@ public class MainGameController {
 			isFirstClick = true;
 			cardPicked = null;
 			sourceStack = null;
+			fromWaste = false;
+			fromTableau = false;
+			fromFoundation = false;
 			clearBoard();
 			draw();
 		}
@@ -261,6 +268,9 @@ public class MainGameController {
 			}
 			else {
 				cloneGame();
+				fromWaste = true;
+				fromTableau = false;
+				fromFoundation = false;
 				cardPicked = currentGame.getWaste().deal();
 				isFirstClick = false;
 			}			
@@ -281,9 +291,17 @@ public class MainGameController {
 				isFirstClick = true;
 				cardPicked = null;
 				sourceStack = null;
+				
+				fromWaste = false;
+				fromTableau = false;
+				fromFoundation = false;
 			}
 			else {
 				isFirstClick = false;
+				
+				fromWaste = false;
+				fromTableau = true;
+				fromFoundation = false;
 				cardPicked = sourceStack.peek();
 			}	
 		}
@@ -302,6 +320,17 @@ public class MainGameController {
 					else {
 						currentTableau.acceptCard(sourceStack);
 					}
+					
+					if(fromWaste) {
+						currentGame.updateScore(5);
+					}
+					else if(fromFoundation) {
+						currentGame.updateScore(-15);
+					}
+					else if(fromTableau) {
+						currentGame.updateScore(5);
+					}
+					
 					move(true);
 				}
 			}
@@ -327,6 +356,17 @@ public class MainGameController {
 				else {
 					currentTableau.acceptCard(sourceStack);
 				}
+				
+				if(fromWaste) {
+					currentGame.updateScore(5);
+				}
+				else if(fromFoundation) {
+					currentGame.updateScore(-15);
+				}
+				else if(fromTableau) {
+					currentGame.updateScore(5);
+				}
+				
 				move(true);
 			}
 		}
@@ -345,6 +385,10 @@ public class MainGameController {
 				cardPicked = currentFoundation.deal();
 				isFirstClick = false;
 				sourceStack = null;
+				
+				fromWaste = false;
+				fromFoundation = true;
+				fromTableau = false;
 			}
 		}
 		else {
@@ -355,6 +399,14 @@ public class MainGameController {
 				else {
 					if(currentFoundation.isValidFoundationMove(cardPicked)) {
 						currentFoundation.acceptCard(cardPicked);
+						
+						if(fromWaste) {
+							currentGame.updateScore(10);
+						}
+						else if(fromTableau) {
+							currentGame.updateScore(10);
+						}
+
 						move(true);
 					}
 					else {
@@ -365,6 +417,14 @@ public class MainGameController {
 			else {
 				if(currentFoundation.isValidFoundationMove(cardPicked)) {
 					currentFoundation.acceptCard(cardPicked);
+					
+					if(fromWaste) {
+						currentGame.updateScore(10);
+					}
+					else if(fromTableau) {
+						currentGame.updateScore(10);
+					}
+					
 					move(true);
 				}
 				else {
@@ -373,6 +433,7 @@ public class MainGameController {
 			}
 		}
 	}
+	
 	
 	public void cloneGame() {
 		Game cloneGame = currentGame.getClone();
