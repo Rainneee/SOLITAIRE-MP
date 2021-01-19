@@ -188,6 +188,15 @@ public class Game {
 	}
 	
 	/**
+	 * Checks if the game is won by the player
+	 * @return
+	 */
+	public boolean isGameComplete() {
+		return foundations[0].isComplete() && foundations[1].isComplete()
+				&& foundations[2].isComplete() && foundations[3].isComplete();
+	}
+	
+	/**
 	 * String Representation of a game of solitaire
 	 */
 	public String toString() {

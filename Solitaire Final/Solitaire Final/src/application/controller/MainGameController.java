@@ -87,10 +87,6 @@ public class MainGameController {
 		tableaus[5] = tableau6;
 		tableaus[6] = tableau7;
 		
-		for(int i = 0; i < 7; i++) {
-			int column = i;
-			tableaus[i].setOnMouseClicked(event -> emptyTableauClick(column));
-		}
 	}
 	
 	public void draw() {
@@ -109,6 +105,10 @@ public class MainGameController {
 		
 		//Update score sheet
 		scoreSheet.setText(String.valueOf(currentGame.getScore()));
+		
+		if(currentGame.isGameComplete()) {
+			main.openCongrats();
+		}
 	}
 	
 	public void clearBoard() {
@@ -155,6 +155,13 @@ public class MainGameController {
 				cardPane.setOnMouseClicked(event -> foundationClick(column));
 				foundations[i].getChildren().add(cardPane);
 			}
+			
+			if(currentFoundation.isEmpty()) {
+				Pane emptyPane = getNewPane();
+				int column = i;
+				emptyPane.setOnMouseClicked(event -> foundationClick(column));
+				foundations[i].getChildren().add(emptyPane);
+			}
 		}
 	}
 	
@@ -172,9 +179,15 @@ public class MainGameController {
 				tableaus[i].setAlignment(cardPane, Pos.TOP_CENTER);
 				cardPane.setTranslateY(offset);
 				tableaus[i].getChildren().add(cardPane);
-				tableaus[i].setPickOnBounds(false);
 				offset += 20;
 				
+			}
+			if(currentTableau.isEmpty()) {
+				Pane emptyPane = getNewPane();
+				int column = i;
+				emptyPane.setOnMouseClicked(event -> emptyTableauClick(column));
+				tableaus[i].setAlignment(emptyPane, Pos.TOP_CENTER);
+				tableaus[i].getChildren().add(emptyPane);
 			}
 		}
 	}
@@ -243,6 +256,7 @@ public class MainGameController {
 				isFirstClick = true;
 			}
 			else {
+				cloneGame();
 				cardPicked = currentGame.getWaste().deal();
 				isFirstClick = false;
 			}			
@@ -317,7 +331,45 @@ public class MainGameController {
 	}
 	
 	public void foundationClick(int column) {
-		
+		Foundation currentFoundation = currentGame.getFoundation(column);
+		if(isFirstClick) {
+			cloneGame();
+			if(currentFoundation.isEmpty()) {
+				isFirstClick = true;
+				cardPicked = null;
+				sourceStack = null;
+			}
+			else {
+				cardPicked = currentFoundation.deal();
+				isFirstClick = false;
+				sourceStack = null;
+			}
+		}
+		else {
+			if(sourceStack != null) {
+				if(sourceStack.size() != 1) {
+					move(false);
+				}
+				else {
+					if(currentFoundation.isValidFoundationMove(cardPicked)) {
+						currentFoundation.acceptCard(cardPicked);
+						move(true);
+					}
+					else {
+						move(false);
+					}
+				}
+			}		
+			else {
+				if(currentFoundation.isValidFoundationMove(cardPicked)) {
+					currentFoundation.acceptCard(cardPicked);
+					move(true);
+				}
+				else {
+					move(false);
+				}
+			}
+		}
 	}
 	
 	public void cloneGame() {

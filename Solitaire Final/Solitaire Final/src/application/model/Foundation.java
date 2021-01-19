@@ -114,6 +114,14 @@ public class Foundation {
 	}
 	
 	/**
+	 * Chekcs if the foundation is complete
+	 * @return
+	 */
+	public boolean isComplete() {
+		return foundation.size() == 13;
+	}
+	
+	/**
 	 * String representation of a Foundation
 	 */
 	public String toString() {
