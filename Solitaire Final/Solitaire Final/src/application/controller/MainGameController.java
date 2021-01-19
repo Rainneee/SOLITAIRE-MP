@@ -229,6 +229,9 @@ public class MainGameController {
 	}
 	
 	public boolean handleStockClick() {
+		if(!isFirstClick) {
+			return false;
+		}
 		cloneGame();
 		
 		Stock currentStock = currentGame.getStock();
