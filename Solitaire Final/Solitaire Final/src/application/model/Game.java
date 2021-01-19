@@ -271,7 +271,7 @@ public class Game {
 	}
 	public class HighscoreManager {
 		private ArrayList<Score> scores;
-		private static final String HIGHSCORE_FILE="highscores.dat";
+		private static final String HIGHSCORE_FILE="highscores.txt";
 		
 		ObjectOutputStream outputstream=null;
 		ObjectInputStream inputstream=null;
