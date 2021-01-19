@@ -23,7 +23,7 @@
             <DropShadow color="#fffbfb" height="14.78" radius="10.7775" spread="0.24" width="30.33" />
          </effect>
       </Label>
-      <AnchorPane fx:id="tablePane" layoutX="245.0" layoutY="131.0" prefHeight="476.0" prefWidth="540.0" />
+      <AnchorPane fx:id="tablePane" layoutX="245.0" layoutY="203.0" prefHeight="316.0" prefWidth="540.0" />
       <Button layoutX="706.0" layoutY="629.0" mnemonicParsing="false" onAction="#backMenu" opacity="0.91" prefHeight="42.0" prefWidth="188.0" text="Back to Main Menu" textFill="#070000">
          <font>
             <Font name="Bernard MT Condensed" size="20.0" />
