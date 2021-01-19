@@ -148,15 +148,15 @@ public class Game {
 		
 		while(i < 10)
 		{
-			if(Main.high[i] == null)
+			if(Main.topTen[i] == null)
 			{
-				Main.high[i] = record;
+				Main.topTen[i] = record;
 				break;
 			}
-			if(Main.high[i].getScore() < Score)
+			if(Main.topTen[i].getScore() < Score)
 			{
-				HighScorer swap = Main.high[i];
-				Main.high[i] = record;
+				HighScorer swap = Main.topTen[i];
+				Main.topTen[i] = record;
 				record = swap;
 			}	
 			i++;

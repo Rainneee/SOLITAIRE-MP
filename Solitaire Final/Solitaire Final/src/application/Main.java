@@ -17,7 +17,7 @@ import javafx.scene.layout.AnchorPane;
 public class Main extends Application {
 	private Stage primaryStage;
 	public static String player = "Player";
-	public static HighScorer[] high = new HighScorer[10];
+	public static HighScorer[] topTen = new HighScorer[10];
 	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
@@ -77,7 +77,7 @@ public class Main extends Application {
 			primaryStage.show();
 			
 			HighScoresController highScoresController = loader.getController();
-			highScoresController.setTable(high);
+			highScoresController.setTable(topTen);
 			highScoresController.setMain(this);
 		
 		} catch(Exception e) {
