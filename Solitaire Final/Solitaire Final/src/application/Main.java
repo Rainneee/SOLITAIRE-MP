@@ -77,6 +77,7 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
+	
 	public void openHighScores() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -97,6 +98,11 @@ public class Main extends Application {
 		}
 	}
 	
+	/**
+	 * 
+	 * @author Romaine
+	 */
+
 	public void getPlayer(){
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -117,7 +123,11 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 
+	 * @author Romaine
+	 */
+
 	public void openCongrats() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -138,7 +148,11 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 
+	 * @author Romaine
+	 */
+
 	public void openGameOver() {
 		try {
 			FXMLLoader loader = new FXMLLoader();

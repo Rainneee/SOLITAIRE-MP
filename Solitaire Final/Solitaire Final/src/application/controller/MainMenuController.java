@@ -3,6 +3,11 @@ package application.controller;
 import application.Main;
 import javafx.fxml.FXML;
 
+/**
+ * 
+ * @author Romaine
+ */
+
 public class MainMenuController {
 	private Main main;
 	

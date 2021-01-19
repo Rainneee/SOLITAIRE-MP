@@ -5,6 +5,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * @author Romaine
+ */
+
 public class PlayerController {
 	private Main main;
 	

@@ -139,7 +139,11 @@ public class Game {
 			Score = 0;
 		}
 	}
-	
+	/**
+	 * 
+	 * @author Romaine
+	 */
+
 	public void recordScore(String playerName, int Score)
 	{
 		int i = 0;

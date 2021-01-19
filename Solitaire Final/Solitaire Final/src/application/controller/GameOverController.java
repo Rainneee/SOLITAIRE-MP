@@ -5,6 +5,11 @@ import application.model.Game;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
+/**
+ * 
+ * @author Romaine
+ */
+
 public class GameOverController {
 	@FXML 
 	private Label playerName, score;
