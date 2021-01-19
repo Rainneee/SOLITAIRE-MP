@@ -277,7 +277,7 @@ public class MainGameController {
 			cloneGame();
 			sourceStack = currentTableau.getPile(row);
 			if(sourceStack.isEmpty()) {
-				isFirstClick = false;
+				isFirstClick = true;
 				cardPicked = null;
 				sourceStack = null;
 			}
@@ -288,11 +288,10 @@ public class MainGameController {
 		}
 		else {
 			if(row != currentTableau.getTableau().size() - 1) {
-				System.out.println(cardPicked);
-				System.out.println(sourceStack);
 				move(false);
 			}
 			else {
+				System.out.println(cardPicked);
 				if(!currentTableau.isValidTableauMove(cardPicked)) {
 					move(false);
 				}
