@@ -6,6 +6,7 @@ import application.controller.HighScoresController;
 import application.controller.MainGameController;
 import application.controller.MainMenuController;
 import application.controller.PlayerController;
+import application.model.HighScorer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -16,6 +17,7 @@ import javafx.scene.layout.AnchorPane;
 public class Main extends Application {
 	private Stage primaryStage;
 	public static String player = "Player";
+	public static HighScorer[] high = new HighScorer[10];
 	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
@@ -75,7 +77,7 @@ public class Main extends Application {
 			primaryStage.show();
 			
 			HighScoresController highScoresController = loader.getController();
-			highScoresController.setTable();
+			highScoresController.setTable(high);
 			highScoresController.setMain(this);
 		
 		} catch(Exception e) {
@@ -118,7 +120,7 @@ public class Main extends Application {
 			primaryStage.show();
 			
 			CongratsController mainGameController = loader.getController();
-			mainGameController.message(this);
+			mainGameController.message(this,  MainGameController.currentGame);
 		
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -139,7 +141,7 @@ public class Main extends Application {
 			primaryStage.show();
 			
 			GameOverController mainGameController = loader.getController();
-			mainGameController.message(this);
+			mainGameController.message(this, MainGameController.currentGame);
 		
 		} catch(Exception e) {
 			e.printStackTrace();

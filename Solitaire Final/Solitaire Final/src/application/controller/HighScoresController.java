@@ -28,13 +28,16 @@ public class HighScoresController {
 	
 	
 	
-	public void setTable(){
+	public void setTable(HighScorer[] high){
 		tableData = FXCollections.observableArrayList();
 		table = new TableView<HighScorer>();
-		tableData.add(new HighScorer("John", 100));
 		
-		HighScorer highScorer = new HighScorer("Matthew", 150);
-		tableData.add(highScorer);		
+		int i = 0;
+		while(i < high.length && high[i] != null)
+		{
+			tableData.add(high[i]);
+			i++;
+		}
 		
 		TableColumn <HighScorer, String> nameColumn = new TableColumn<HighScorer, String>("Name");
 		TableColumn <HighScorer, Integer> scoreColumn = new TableColumn<HighScorer, Integer>("Score");

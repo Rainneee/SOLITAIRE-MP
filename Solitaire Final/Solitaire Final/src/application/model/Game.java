@@ -2,6 +2,8 @@ package application.model;
 
 import java.util.Stack;
 
+import application.Main;
+
 /**
  * Solitaire Game Representation
  * @author willn
@@ -13,8 +15,7 @@ public class Game {
 	private Foundation[] foundations;
 	private Tableau[] tableaus;
 	//private Stack<Game> moveHistory;
-	
-	private int Score;
+	public int Score;
 	
 	/**
 	 * Constructor for Game class
@@ -139,6 +140,29 @@ public class Game {
 		}
 	}
 	
+	public void recordScore(String playerName, int Score)
+	{
+		int i = 0;
+		
+		HighScorer record = new HighScorer(playerName, Score);
+		
+		while(i < 10)
+		{
+			if(Main.high[i] == null)
+			{
+				Main.high[i] = record;
+				break;
+			}
+			if(Main.high[i].getScore() < Score)
+			{
+				HighScorer swap = Main.high[i];
+				Main.high[i] = record;
+				record = swap;
+			}	
+			i++;
+		}
+	}
+	
 	/**
 	 * Recycles waste
 	 * @return true if success
@@ -222,4 +246,5 @@ public class Game {
 		gameString += "\n\n";
 		return gameString;
 	}
+
 }
