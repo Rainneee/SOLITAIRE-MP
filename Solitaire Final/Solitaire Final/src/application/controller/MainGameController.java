@@ -38,7 +38,7 @@ public class MainGameController {
 	private Canvas gameCanvas;
 	
 	private Main main;
-	private Game currentGame;
+	public static Game currentGame;
 	private StackPane[] foundations;
 	private StackPane[] tableaus;
 	private Stack<Game> moveHistory;
