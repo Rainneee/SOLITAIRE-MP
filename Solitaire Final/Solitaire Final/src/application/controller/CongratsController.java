@@ -14,9 +14,7 @@ public class CongratsController {
 		this.main = main;
 		
 		playerName.setText(Main.player); 
-		//score.setText(""+ valueofscore) value of score = value record sa main;
-		//main.  tagarecord ng score from main
-		
+		score.setText(String.valueOf(MainGameController.currentGame.getScore()));
 	}
 	
 	@FXML
