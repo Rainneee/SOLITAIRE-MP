@@ -1,8 +1,11 @@
 package application.model;
 
 import java.util.Stack;
+import java.util.*;
+import java.io.*;
 
 import application.Main;
+import java.util.Comparator;
 
 /**
  * Solitaire Game Representation
@@ -151,6 +154,8 @@ public class Game {
 			if(Main.high[i] == null)
 			{
 				Main.high[i] = record;
+				HighscoreManager hm = new HighscoreManager();
+		        hm.addScore(playerName,Score);
 				break;
 			}
 			if(Main.high[i].getScore() < Score)
@@ -246,5 +251,107 @@ public class Game {
 		gameString += "\n\n";
 		return gameString;
 	}
+	
+	public class Score {
+	    private int score;
+	    private String naam;
+
+	    public int getScore() {
+	        return score;
+	    }
+
+	    public String getNaam() {
+	        return naam;
+	    }
+
+	    public Score(String naam, int score) {
+	        this.score = score;
+	        this.naam = naam;
+	    }
+	}
+	public class HighscoreManager {
+		private ArrayList<Score> scores;
+		private static final String HIGHSCORE_FILE="highscores.dat";
+		
+		ObjectOutputStream outputstream=null;
+		ObjectInputStream inputstream=null;
+		
+		public HighscoreManager() {
+			scores= new ArrayList<Score>();
+		}
+		public ArrayList<Score> getScores() {
+	        loadScoreFile();
+	        sort();
+	        return scores;
+	    }
+		private void sort() {
+	        ScoreComparator comparator = new ScoreComparator();
+	        Collections.sort(scores, comparator);
+		}
+		public void addScore(String name, int score) {
+	        loadScoreFile();
+	        scores.add(new Score(name, score));
+	        updateScoreFile();
+		}
+		public void loadScoreFile() {
+	        try {
+	            inputstream = new ObjectInputStream(new FileInputStream(HIGHSCORE_FILE));
+	            scores = (ArrayList<Score>) inputstream.readObject();
+	        } catch (FileNotFoundException e) {
+	            System.out.println("[Laad] FNF Error: " + e.getMessage());
+	        } catch (IOException e) {
+	            System.out.println("[Laad] IO Error: " + e.getMessage());
+	        } catch (ClassNotFoundException e) {
+	            System.out.println("[Laad] CNF Error: " + e.getMessage());
+	        } finally {
+	            try {
+	                if (outputstream != null) {
+	                    outputstream.flush();
+	                    outputstream.close();
+	                }
+	            } catch (IOException e) {
+	                System.out.println("[Laad] IO Error: " + e.getMessage());
+	            }
+	        }
+		}
+		public void updateScoreFile() {
+	        try {
+	            outputstream = new ObjectOutputStream(new FileOutputStream(HIGHSCORE_FILE));
+	            outputstream.writeObject(scores);
+	        } catch (FileNotFoundException e) {
+	            System.out.println("[Update] FNF Error: " + e.getMessage() + ",the program will try and make a new file");
+	        } catch (IOException e) {
+	            System.out.println("[Update] IO Error: " + e.getMessage());
+	        } finally {
+	            try {
+	                if (outputstream != null) {
+	                    outputstream.flush();
+	                    outputstream.close();
+	                }
+	            } catch (IOException e) {
+	                System.out.println("[Update] Error: " + e.getMessage());
+	            }
+	        }
+		}
+		
+	}
+	
+	public class ScoreComparator implements Comparator<Score> {
+        public int compare(Score score1, Score score2) {
+
+            int sc1 = score1.getScore();
+            int sc2 = score2.getScore();
+
+            if (sc1 > sc2){
+                return -1;
+            }else if (sc1 < sc2){
+                return +1;
+            }else{
+                return 0;
+            }
+        }
+	}
+
+	
 
 }
