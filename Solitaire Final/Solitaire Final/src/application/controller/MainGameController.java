@@ -250,6 +250,7 @@ public class MainGameController {
 	
 	public void handleWasteClick() {
 		if(!isFirstClick) {
+			undoMove();
 			isFirstClick = true;
 			cardPicked = null;
 			sourceStack = null;
