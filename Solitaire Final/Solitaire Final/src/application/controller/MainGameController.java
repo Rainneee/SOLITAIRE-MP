@@ -292,7 +292,6 @@ public class MainGameController {
 				move(false);
 			}
 			else {
-				System.out.println(cardPicked);
 				if(!currentTableau.isValidTableauMove(cardPicked)) {
 					move(false);
 				}
