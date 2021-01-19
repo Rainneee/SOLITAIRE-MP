@@ -32,18 +32,6 @@ public class HighScoresController {
 		tableData = FXCollections.observableArrayList();
 		table = new TableView<HighScorer>();
 	
-		if(topTen[0] == null) {
-			topTen[0] = new HighScorer("Will",100);
-			topTen[1] = new HighScorer("Rice",95);
-			topTen[2] = new HighScorer("Romaine",90);
-			topTen[3] = new HighScorer("Biboy",85);
-			topTen[4] = new HighScorer("Mikasa",80);
-			topTen[5] = new HighScorer("Sheshe",70);
-			topTen[6] = new HighScorer("Marlou",75);
-			topTen[7] = new HighScorer("Aling Vickie",65);
-			topTen[8] = new HighScorer("Mang Kanor",60);
-			topTen[9] = new HighScorer("hatdog",50);
-		}
 		int i = 0;
 		while(i < topTen.length && topTen[i] != null)
 		{
