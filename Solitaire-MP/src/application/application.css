@@ -1,7 +1,0 @@
-/** 
- * For setting background image for title 
- * */
-.titlePane{
-	-fx-background-image: url("/application/view/MainWallpaper.png");
-	-fx-background-size: 100% 100%;
-}
